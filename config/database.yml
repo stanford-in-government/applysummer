@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  pool: 5
+  username: fellowship
+  password: a12345
+
+development:
+  <<: *default
+  database: fellowship_dev
+
+test:
+  <<: *default
+  database: fellowship_test
+
+production:
+  <<: *default
+  database: fellowship_prod
