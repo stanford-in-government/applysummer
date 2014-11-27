@@ -1,13 +1,15 @@
 source 'https://rubygems.org'
 
-gem 'devise'
+gem 'twitter-bootstrap-rails', '~> 3.2.0'
+gem 'simple_form', '~> 3.1.0'
+gem 'devise', '~> 3.4.1'
 gem 'rails', '4.1.7'
 gem 'pg', '0.17.1'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer',  platforms: :ruby
+gem 'therubyracer',  platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

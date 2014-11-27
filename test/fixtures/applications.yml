@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  category: 1
+  status: 1
+  rec_code: MyString
+  user_id: 
+
+two:
+  category: 1
+  status: 1
+  rec_code: MyString
+  user_id: 
