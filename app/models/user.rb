@@ -5,4 +5,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :documents
   has_many :applications
+  has_one :profile
+
+  def has_profile?
+    !profile.nil?
+  end
 end

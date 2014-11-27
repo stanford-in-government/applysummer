@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'twitter-bootstrap-rails', '~> 3.2.0'
 gem 'simple_form', '~> 3.1.0'
+gem 'country_select'
 gem 'devise', '~> 3.4.1'
 gem 'rails', '4.1.7'
 gem 'pg', '0.17.1'

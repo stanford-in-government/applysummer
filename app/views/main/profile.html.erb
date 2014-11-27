@@ -1,0 +1,138 @@
+<div class="page-header">
+  <% if !current_user.has_profile? %>
+    <h1>Create Profile</h1>
+    <p>You do not have a saved profile yet. Please fill in your personal information below and click "Save". You need to do this before proceeding to the rest of the application process.</p>
+  <% else %>
+    <h1>Modfiy Profile</h1>
+    <p>You can return to this page to modify your profile information at any time during the application process. Make the desired changes and click "Save".</p>
+  <% end %>
+</div>
+   
+<%= simple_form_for(@profile, url: user_profile_url, html: { method: :post }) do |f| %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Full Name</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-4">
+      <%= f.input :first_name, label: 'first', placeholder: 'John'%>
+      <%= error_span(@profile[:first_name]) %>
+      </div>
+      <div class="col-md-4">
+      <%= f.input :middle_name, label: 'middle'%>
+      <%= error_span(@profile[:middle_name]) %>
+      </div>
+      <div class="col-md-4">
+      <%= f.input :last_name, label: 'last', placeholder: 'Smith'%>
+      <%= error_span(@profile[:last_name]) %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Local Address</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-12">      
+      <%= f.input :local_street, label: 'street address', as: :text , placeholder: '531 Lasuen Mall'%>
+      <%= error_span(@profile[:local_street]) %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+      <%= f.input :local_city, label: 'city', placeholder:'Stanford'%>
+      <%= error_span(@profile[:local_city]) %>
+      </div>
+      <div class="col-md-4">
+      <%= f.input :local_state, label: 'state', placeholder:'CA'%>
+      <%= error_span(@profile[:local_state]) %>
+      </div>
+      <div class="col-md-4">
+      <%= f.input :local_postal, label: 'zip code', input_html: { maxlength: 10 }, placeholder:'94305' %>
+      <%= error_span(@profile[:local_postal]) %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Permanent Address</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-12">      
+      <%= f.input :perm_street, label:'street address', as: :text, placeholder: '135-3 Motoyama' %>
+      <%= error_span(@profile[:perm_street]) %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+      <%= f.input :perm_city, label: 'city', placeholder:'Kanahashi-shi'%>
+      <%= error_span(@profile[:perm_city]) %>
+      </div>
+      <div class="col-md-4">
+      <%= f.input :perm_state, label: 'state/province', placeholder:'Mie-ken'%>
+      <%= error_span(@profile[:perm_state]) %>
+      </div>
+      <div class="col-md-4">
+      <%= f.input :perm_postal, label: 'postal code', input_html: { maxlength: 10 }, placeholder:'645-2536' %>
+      <%= error_span(@profile[:perm_postal]) %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+      <%= f.input :perm_country, label: 'country', priority: [ "United States" ] %>
+      <%= error_span(@profile[:perm_country]) %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Academics</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.input :majors, label: 'list your majors', placeholder: 'Political Science, Economics' %>
+        <%= error_span(@profile[:majors]) %>
+      </div>
+      <div class="col-md-6">
+        <%= f.input :minors, label: 'list your minors', placeholder: 'Computer Science, Mathematics' %>
+        <%= error_span(@profile[:minors]) %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <%= f.input :class_year, selected: Time.now.year+1, collection: @profile.get_years %>
+        <%= error_span(@profile[:class_year]) %>
+      </div>
+      <div class="col-md-4">
+        <%= f.input :overall_gpa, placeholder: '4.00' %>
+        <%= error_span(@profile[:overall_gpa]) %>
+      </div>
+      <div class="col-md-4">
+        <%= f.input :major_gpa, placeholder: '4.00' %>
+        <%= error_span(@profile[:major_gpa]) %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <%= f.button :submit, 'Save', :class => 'btn-primary btn btn-lg col-md-2 col-md-offset-5' %>  
+</div>
+
+<% end %>

@@ -1,0 +1,22 @@
+label {
+  display: block;
+}
+
+form .panel {
+  border: 0 !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  margin: 10px;
+}
+
+form .panel-heading {
+  border: 0 !important;
+  background-color: inherit !important;
+}
+
+form label {
+  font-weight: normal;
+  font-size: 0.9em;
+  color: #999;
+  text-transform: uppercase;
+}

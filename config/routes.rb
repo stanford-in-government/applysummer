@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :organizations
   resources :choices
   resources :users
+  resources :profiles
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -17,6 +18,7 @@ Rails.application.routes.draw do
   get 'fellowships' => 'main#fellowships'
   get 'apply' => 'main#apply'
   get 'confirmed' => 'main#confirmed'
+  match 'profile' => 'main#profile', as: :user_profile, via: [:get, :post]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

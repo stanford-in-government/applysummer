@@ -1,0 +1,40 @@
+<%= simple_form_for @profile, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :user_id %>
+  <%= error_span(@profile[:user_id]) %>
+  <%= f.input :first_name %>
+  <%= error_span(@profile[:first_name]) %>
+  <%= f.input :middle_name %>
+  <%= error_span(@profile[:middle_name]) %>
+  <%= f.input :last_name %>
+  <%= error_span(@profile[:last_name]) %>
+  <%= f.input :local_street %>
+  <%= error_span(@profile[:local_street]) %>
+  <%= f.input :local_city %>
+  <%= error_span(@profile[:local_city]) %>
+  <%= f.input :local_state %>
+  <%= error_span(@profile[:local_state]) %>
+  <%= f.input :local_postal %>
+  <%= error_span(@profile[:local_postal]) %>
+  <%= f.input :perm_street %>
+  <%= error_span(@profile[:perm_street]) %>
+  <%= f.input :perm_city %>
+  <%= error_span(@profile[:perm_city]) %>
+  <%= f.input :perm_state %>
+  <%= error_span(@profile[:perm_state]) %>
+  <%= f.input :perm_postal %>
+  <%= error_span(@profile[:perm_postal]) %>
+  <%= f.input :majors %>
+  <%= error_span(@profile[:majors]) %>
+  <%= f.input :minors %>
+  <%= error_span(@profile[:minors]) %>
+  <%= f.input :class_year %>
+  <%= error_span(@profile[:class_year]) %>
+  <%= f.input :overall_gpa %>
+  <%= error_span(@profile[:overall_gpa]) %>
+  <%= f.input :major_gpa %>
+  <%= error_span(@profile[:major_gpa]) %>
+
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                profiles_path, :class => 'btn btn-default' %>
+<% end %>

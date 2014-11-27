@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  first_name: MyString
+  middle_name: MyString
+  last_name: MyString
+  local_street: MyString
+  local_city: MyString
+  local_state: MyString
+  local_postal: MyString
+  perm_street: MyString
+  perm_city: MyString
+  perm_state: MyString
+  perm_postal: MyString
+  majors: MyString
+  minors: MyString
+  class_year: 1
+  overall_gpa: 1.5
+  major_gpa: 1.5
+
+two:
+  user_id: 
+  first_name: MyString
+  middle_name: MyString
+  last_name: MyString
+  local_street: MyString
+  local_city: MyString
+  local_state: MyString
+  local_postal: MyString
+  perm_street: MyString
+  perm_city: MyString
+  perm_state: MyString
+  perm_postal: MyString
+  majors: MyString
+  minors: MyString
+  class_year: 1
+  overall_gpa: 1.5
+  major_gpa: 1.5

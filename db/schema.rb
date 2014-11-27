@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141127080959) do
+ActiveRecord::Schema.define(version: 20141127190434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,31 @@ ActiveRecord::Schema.define(version: 20141127080959) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "profiles", force: true do |t|
+    t.integer  "user_id"
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "last_name"
+    t.string   "local_street"
+    t.string   "local_city"
+    t.string   "local_state"
+    t.string   "local_postal"
+    t.string   "perm_street"
+    t.string   "perm_city"
+    t.string   "perm_state"
+    t.string   "perm_country"
+    t.string   "perm_postal"
+    t.string   "majors"
+    t.string   "minors"
+    t.integer  "class_year"
+    t.float    "overall_gpa"
+    t.float    "major_gpa"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"
