@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     confirmations: 'users/confirmations'
   }
+
   resources :documents
   resources :applications
   resources :organizations
