@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: {
+    confirmations: 'users/confirmations'
+  }
   resources :documents
   resources :applications
   resources :organizations
@@ -12,6 +15,8 @@ Rails.application.routes.draw do
   root 'main#index'
 
   get 'fellowships' => 'main#fellowships'
+  get 'apply' => 'main#apply'
+  get 'confirmed' => 'main#confirmed'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

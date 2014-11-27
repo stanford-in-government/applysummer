@@ -1,3 +1,4 @@
+gem install mailcatcher
 sudo apt-get install postgresql postgresql-contrib postgresql-server-dev-9.3
 
 sudo -u postgres psql
