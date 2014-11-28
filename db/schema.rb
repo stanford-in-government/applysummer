@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141127190434) do
+ActiveRecord::Schema.define(version: 20141127224809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,10 +40,14 @@ ActiveRecord::Schema.define(version: 20141127190434) do
   add_index "choices", ["organization_id"], name: "index_choices_on_organization_id", using: :btree
 
   create_table "documents", force: true do |t|
-    t.integer  "category",   default: 0
+    t.integer  "category",          default: 0
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
   end
 
   add_index "documents", ["user_id"], name: "index_documents_on_user_id", using: :btree

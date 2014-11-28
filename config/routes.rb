@@ -19,7 +19,8 @@ Rails.application.routes.draw do
   get 'fellowships' => 'main#fellowships'
   get 'apply' => 'main#apply'
   get 'confirmed' => 'main#confirmed'
-  match 'profile' => 'main#profile', as: :user_profile, via: [:get, :post]
+  match 'profile' => 'main#profile', as: :user_profile, via: [ :get, :post ]
+  match 'document' => 'main#document', as: :user_document, via: [ :get, :post ]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,5 +1,6 @@
 class DocumentsController < ApplicationController
   before_action :set_document, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [ :destroy ]
 
   respond_to :html
 
@@ -32,8 +33,13 @@ class DocumentsController < ApplicationController
   end
 
   def destroy
-    @document.destroy
-    respond_with(@document)
+    if @document.user == current_user
+      flash[:notice] = "#{@document.file_file_name} successfully deleted."
+      @document.destroy
+      redirect_to user_document_path
+    else
+      respond_with(@document)
+    end
   end
 
   private
@@ -42,6 +48,6 @@ class DocumentsController < ApplicationController
     end
 
     def document_params
-      params.require(:document).permit(:category, :user_id)
+      params.require(:document).permit(:category, :user_id, :file)
     end
 end

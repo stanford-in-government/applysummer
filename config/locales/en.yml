@@ -21,3 +21,9 @@
 
 en:
   hello: "Hello world"
+
+  activerecord:
+    attributes:
+      document:
+        category: Type
+        created_at: Uploaded
