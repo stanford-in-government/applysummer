@@ -16,9 +16,11 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'main#index'
 
-  get 'fellowships' => 'main#fellowships'
-  get 'apply' => 'main#apply'
   get 'confirmed' => 'main#confirmed'
+  get 'fellowships' => 'main#fellowships'
+  get 'apply' => 'main#apply', as: :apply
+  get 'apply/:category' => 'main#apply_to', as: :apply_to
+  match 'apply/:category/statement' => 'main#statement', as: :statement, via: [ :get, :post ]
   match 'profile' => 'main#profile', as: :user_profile, via: [ :get, :post ]
   match 'document' => 'main#document', as: :user_document, via: [ :get, :post ]
 

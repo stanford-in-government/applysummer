@@ -17,9 +17,11 @@ ActiveRecord::Schema.define(version: 20141127224809) do
   enable_extension "plpgsql"
 
   create_table "applications", force: true do |t|
-    t.integer  "category",   default: 0
-    t.integer  "status",     default: 0
+    t.integer  "category",       default: 0
+    t.integer  "status",         default: 0
     t.string   "rec_code"
+    t.string   "pers_statement"
+    t.string   "rel_coursework"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -58,6 +60,7 @@ ActiveRecord::Schema.define(version: 20141127224809) do
     t.integer  "category",    default: 0
     t.string   "description"
     t.string   "city"
+    t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

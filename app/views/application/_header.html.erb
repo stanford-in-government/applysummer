@@ -6,7 +6,7 @@
 <% if user_signed_in? %>
   <p>Welcome, <strong><%= current_user.email %></strong></p>
   <div class="btn-group">
-    <%= link_to "Apply", destroy_user_session_path, class: "btn btn-primary" %>
+    <%= link_to "Apply", apply_path, class: "btn btn-primary" %>
     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
       <span class="caret"></span>
       <span class="sr-only">Toggle Dropdown</span>
@@ -17,9 +17,6 @@
       <% end %></li>
       <li><%= link_to user_document_path do %>
         <i class="fa fa-fw" aria-hidden="true"></i> Upload Docs
-      <% end %></li>
-      <li><%= link_to destroy_user_session_path do %>
-        <i class="fa fa-fw" aria-hidden="true"></i> Request Recs
       <% end %></li>
       <li class="divider"></li>
       <li><%= link_to edit_user_registration_path do %>

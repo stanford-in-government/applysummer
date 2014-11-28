@@ -1,0 +1,39 @@
+<div class="page-header">
+    <h1>Short Responses</h1>
+    <p>The responses you provide here are made available to all the fellowships that you apply to. Fellowship-specific responses should be reserved for the next step.
+</div>
+
+<%= simple_form_for(@application, url: statement_path, html: { method: :post }) do |f| %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Personal Statement</h3>
+  </div>
+  <div class="panel-body">
+    <p>Please describe your personal interest in the SIG summer fellowship in no more than 750 words. We recommend composing the personal statement on a separate word processing document before pasting it here. Your response should address the following questions:</p>
+    <ul>
+      <li>Why are you interested in this pursuing a SIG summer fellowship?</li>
+      <li>What qualifications and experiences do you have that would contribute to this program?</li>
+      <li>How could the fellowship enhance your academic and/or career plans?</li>
+    </ul>
+  </div>
+      <%= f.input :pers_statement, label: false, as: :text, input_html: { rows: 20 }%>
+    <%= error_span(@application[:pers_statement]) %>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Relevant Coursework</h3>
+  </div>
+  <div class="panel-body">
+    <p>In no more than 125 words, please describe the coursework you have completed or are currently taking that you believe is relevant to any potential SIG fellowship.</p>
+  </div>
+  <%= f.input :rel_coursework, label: false, as: :text, input_html: { rows: 5 }%>
+  <%= error_span(@application[:rel_coursework]) %>
+</div>
+
+<div class="row">
+  <%= f.button :submit, 'Save', :class => 'btn-primary btn btn-lg col-md-2 col-md-offset-5' %>  
+</div>
+
+<% end %>

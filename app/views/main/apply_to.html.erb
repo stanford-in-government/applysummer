@@ -1,0 +1,47 @@
+<%- model_class = Application -%>
+<div class="panel panel-default">
+  <div class="panel-heading"><h2>Your <%= model_class.human_attribute_name(@category) %> Application</h2></div>
+  <div class="panel-body">
+    <p>There are four steps to completing your application:</p>
+
+    <h3>Step 1</h3>
+
+    <p>Make sure that your profile is updated.</p>
+
+    <%= @profile_exists ? print_status_label(:completed, 'success') : print_status_label(:incomplete, 'danger') %>
+
+    <%= link_to user_profile_path(redirect: true), class: 'btn btn-large btn-default' do %>
+      <i class="fa fa-fw fa-user" aria-hidden="true"></i> Edit Profile
+    <% end %>
+
+    <h3>Step 2</h3>
+
+    <p>Upload supporting documents. This should include your resume and transcript.</p>
+
+    <% if @resume_exists && @transcript_exists %>
+      <%= print_status_label(:completed, 'success') %>
+    <% else %>
+      <%= @resume_exists ? print_status_label(:resume_uploaded, 'success') : print_status_label(:resume_missing, 'danger') %>
+      <%= @transcript_exists ? print_status_label(:transcript_uploaded, 'success') : print_status_label(:transcript_missing, 'danger') %>
+    <% end %>
+
+    <%= link_to user_document_path, class: 'btn btn-large btn-default' do %>
+      <i class="fa fa-fw fa-file-pdf-o" aria-hidden="true"></i> Upload Documents
+    <% end %>
+
+    <h3>Step 3</h3>
+
+    <p>Submit short responses to some shared questions that will be made available to all fellowships you apply to.</p>
+
+    <% if @personal_statement_exists && @relevant_coursework_exists %>
+      <%= print_status_label(:completed, 'success') %>
+    <% else %>
+      <%= @personal_statement_exists ? print_status_label(:personal_statement_submitted, 'success') : print_status_label(:personal_statement_missing, 'danger') %>
+      <%= @relevant_coursework_exists ? print_status_label(:relevant_coursework_submitted, 'success') : print_status_label(:relevant_coursework_missing, 'danger') %>
+    <% end %>
+
+    <%= link_to statement_path(@category), class: 'btn btn-large btn-default' do %>
+      <i class="fa fa-fw fa-pencil" aria-hidden="true"></i> Short Responses
+    <% end %>
+  </div>
+</div>

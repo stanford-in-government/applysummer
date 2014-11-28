@@ -10,4 +10,12 @@ class User < ActiveRecord::Base
   def has_profile?
     !profile.nil?
   end
+
+  def has_resume?
+    documents.where(category: Document.categories[:resume]).count > 0
+  end
+
+  def has_transcript?
+    documents.where(category: Document.categories[:transcript]).count > 0
+  end
 end

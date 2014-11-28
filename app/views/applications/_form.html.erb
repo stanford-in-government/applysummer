@@ -1,33 +1,14 @@
-<%= form_for(@application) do |f| %>
-  <% if @application.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@application.errors.count, "error") %> prohibited this application from being saved:</h2>
+<%= simple_form_for @application, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :category %>
+  <%= error_span(@application[:category]) %>
+  <%= f.input :status %>
+  <%= error_span(@application[:status]) %>
+  <%= f.input :rec_code %>
+  <%= error_span(@application[:rec_code]) %>
+  <%= f.input :user_id %>
+  <%= error_span(@application[:user_id]) %>
 
-      <ul>
-      <% @application.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :category %><br>
-    <%= f.number_field :category %>
-  </div>
-  <div class="field">
-    <%= f.label :status %><br>
-    <%= f.number_field :status %>
-  </div>
-  <div class="field">
-    <%= f.label :rec_code %><br>
-    <%= f.text_field :rec_code %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                applications_path, :class => 'btn btn-default' %>
 <% end %>

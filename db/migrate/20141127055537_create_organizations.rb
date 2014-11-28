@@ -6,6 +6,7 @@ class CreateOrganizations < ActiveRecord::Migration
       t.integer :category, default: 0
       t.string :description
       t.string :city
+      t.string :state
 
       t.timestamps
     end

@@ -9,6 +9,8 @@
   <%= error_span(@organization[:description]) %>
   <%= f.input :city %>
   <%= error_span(@organization[:city]) %>
+  <%= f.input :state %>
+  <%= error_span(@organization[:state]) %>
 
   <%= f.button :submit, :class => 'btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

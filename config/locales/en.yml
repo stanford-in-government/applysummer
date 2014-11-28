@@ -20,10 +20,10 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
-
   activerecord:
     attributes:
       document:
         category: Type
         created_at: Uploaded
+      application:
+        fellowship: SIG Fellowship
