@@ -27,3 +27,7 @@ en:
         created_at: Uploaded
       application:
         fellowship: SIG Fellowship
+      organization:
+        local_state: Local/State
+        dc_national: DC/National
+        international: International

@@ -5,11 +5,13 @@ class MainController < ApplicationController
   def index
   end
 
-  def fellowships
-  end
-
   def apply
     @categories = Application::CATEGORIES
+    application = current_user.applications.where("status <> ?", Application.statuses[:archived]).take
+    if application
+      puts application.category
+      redirect_to apply_to_path(application.category)
+    end
   end
 
   def apply_to
@@ -18,6 +20,8 @@ class MainController < ApplicationController
     @transcript_exists = current_user.has_transcript?
     @personal_statement_exists = @application.has_personal_statement?
     @relevant_coursework_exists = @application.has_relevant_coursework?
+    @ranking_exists = @application.choices_filled?
+    @ranking_submitted = @application.completed?
   end
 
   def statement

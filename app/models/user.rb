@@ -3,9 +3,9 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_many :documents
-  has_many :applications
-  has_one :profile
+  has_many :documents, dependent: :destroy
+  has_many :applications, dependent: :destroy
+  has_one :profile, dependent: :destroy
 
   def has_profile?
     !profile.nil?

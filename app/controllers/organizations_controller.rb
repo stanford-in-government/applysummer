@@ -1,10 +1,10 @@
 class OrganizationsController < ApplicationController
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
 
-  respond_to :html
+  respond_to :html, :json
 
   def index
-    @organizations = Organization.all
+    @organizations = Organization.all.order(category: :asc, name: :asc)
     respond_with(@organizations)
   end
 
@@ -42,6 +42,6 @@ class OrganizationsController < ApplicationController
     end
 
     def organization_params
-      params.require(:organization).permit(:name, :url, :category, :description, :city)
+      params.require(:organization).permit(:name, :url, :category, :description, :city, :state)
     end
 end

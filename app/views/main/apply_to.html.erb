@@ -2,7 +2,7 @@
 <div class="panel panel-default">
   <div class="panel-heading"><h2>Your <%= model_class.human_attribute_name(@category) %> Application</h2></div>
   <div class="panel-body">
-    <p>There are four steps to completing your application:</p>
+    <p>There are five steps to completing your application. When all the steps below are showing <span class="label label-success">Completed</span>, then you have completed your application process.</p>
 
     <h3>Step 1</h3>
 
@@ -42,6 +42,20 @@
 
     <%= link_to statement_path(@category), class: 'btn btn-large btn-default' do %>
       <i class="fa fa-fw fa-pencil" aria-hidden="true"></i> Short Responses
+    <% end %>
+
+    <h3>Step 4</h3>
+
+    <p>Rank your fellowship preferences and write a short response for each of your top three chocies.</p>
+
+    <% if @ranking_submitted %>
+      <%= print_status_label(:completed, 'success') %>
+    <% else %>
+      <%= @ranking_exists ? print_status_label(:preferences_not_submitted, 'warning') : print_status_label(:preferences_incomplete, 'danger') %>
+    <% end %>
+
+    <%= link_to fellowships_rank_path, class: 'btn btn-large btn-default' do %>
+      <i class="fa fa-fw fa-sort-amount-desc" aria-hidden="true"></i> Rank Fellowships
     <% end %>
   </div>
 </div>

@@ -19,5 +19,13 @@ module Fellowship
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
+    config.fellowship = ActiveSupport::OrderedOptions.new
+
+    # Maximum number of fellowships the applicant is allowed to rank
+    config.fellowship.num_selected = 5
+
+    # Maximum number of fellowships the applicant is allowed to submit a detailed response for
+    config.fellowship.num_applied = 3
   end
 end

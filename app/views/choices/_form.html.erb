@@ -1,33 +1,16 @@
-<%= form_for(@choice) do |f| %>
-  <% if @choice.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@choice.errors.count, "error") %> prohibited this choice from being saved:</h2>
+<%= simple_form_for @choice, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :rank %>
+  <%= error_span(@choice[:rank]) %>
+  <%= f.input :statement %>
+  <%= error_span(@choice[:statement]) %>
+  <%= f.input :budget %>
+  <%= error_span(@choice[:budget]) %>
+  <%= f.input :organization_id %>
+  <%= error_span(@choice[:organization_id]) %>
+  <%= f.input :application_id %>
+  <%= error_span(@choice[:application_id]) %>
 
-      <ul>
-      <% @choice.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :rank %><br>
-    <%= f.number_field :rank %>
-  </div>
-  <div class="field">
-    <%= f.label :statement %><br>
-    <%= f.text_field :statement %>
-  </div>
-  <div class="field">
-    <%= f.label :organization_id %><br>
-    <%= f.text_field :organization_id %>
-  </div>
-  <div class="field">
-    <%= f.label :application_id %><br>
-    <%= f.text_field :application_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                choices_path, :class => 'btn btn-default' %>
 <% end %>

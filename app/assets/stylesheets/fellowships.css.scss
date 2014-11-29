@@ -1,0 +1,30 @@
+// Place all the styles related to the Fellowships controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#fellowship-ranker {
+  padding: 10px;
+  .btn-group-top {
+    margin-bottom: 20px;
+  }
+}
+
+.fellowship-city {
+  font-size: 0.8em;
+  text-transform: uppercase;
+  color: #999;
+  display: block;
+}
+
+.panel-heading .fellowship-city {
+  margin-top: 6px;
+}
+
+.selected-choices {
+  padding: 10px;
+}
+
+.rank-badge {
+  min-height: 40px;
+  margin-right: 20px;
+}

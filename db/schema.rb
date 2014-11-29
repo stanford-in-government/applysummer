@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20141127224809) do
   create_table "choices", force: true do |t|
     t.integer  "rank"
     t.string   "statement"
+    t.string   "budget"
     t.integer  "organization_id"
     t.integer  "application_id"
     t.datetime "created_at"

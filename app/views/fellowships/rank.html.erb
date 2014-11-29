@@ -1,0 +1,67 @@
+<% title 'Rank Choices' %>
+
+<div id="fellowship-alerts">
+</div>
+
+<div class="page-header">
+  <h1>Rank Choices</h1>
+  <p>You may rank up to <%= @num_selected %> fellowship choices and provide detailed response for the top <%= @num_applied %> choices. The order in which your choices are arranged here is your order of preference. Use the <i class="fa fa-chevron-up"></i> and <i class="fa fa-chevron-down"></i> buttons to reorder your choices.</p>
+
+  <p>Note that your preferences and write-ups will not be saved until you click on <a class="btn btn-sm btn-default" data-action="save"><i class="fa fa-spin"></i> Save </a></p>
+
+  <p>Once you submit your preferences, you will no longer be able to edit them. You need to submit your preferences before the deadline in order to finalize your application.</p>
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+    <div id="fellowship-ranker">
+
+      <div class="btn-group btn-group-top btn-group-justified" role="group">
+        <a class="btn btn-default" data-action="save"><i class="fa fa-spin"></i> Save </a>
+        <a class="btn btn-primary" data-action="submit"><i class="fa fa-spin"></i> Submit </a>
+      </div>
+
+      <p>Select the fellowships you wish to rank from the categories below.</p>
+      <div class="btn-group-top btn-group-vertical center-block" role="group">
+
+        <% for category, category_name in @categories %>
+
+          <div class="btn-group" role="group">
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+              <%= category_name %>
+            </button>
+            <ul class="dropdown-menu" data-category="<%= category %>"></ul>
+          </div>
+
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-md-9">
+    <div id="fellowship-form">
+
+      <div class="selected-choices">
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    initRanker({
+      alerts: '#fellowship-alerts',
+      dropdown: '#fellowship-ranker',
+      form: '#fellowship-form',
+      max_selected: <%= @num_selected %>,
+      max_applied: <%= @num_applied %>,
+      save_url: '<%= fellowships_save_path %>',
+      return_url: '<%= apply_to_path(:fellowship) %>',
+      choices: JSON.parse('<%= raw(@choices.to_json) %>'),
+      fellowships: JSON.parse('<%= raw(@fellowships.to_json) %>'),
+      submitted: <%= @application.completed? %>
+    })
+  });
+</script>

@@ -1,24 +1,27 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Choice -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <strong>Rank:</strong>
-  <%= @choice.rank %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:rank) %>:</strong></dt>
+  <dd><%= @choice.rank %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:statement) %>:</strong></dt>
+  <dd><%= @choice.statement %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:budget) %>:</strong></dt>
+  <dd><%= @choice.budget %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:organization_id) %>:</strong></dt>
+  <dd><%= @choice.organization_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:application_id) %>:</strong></dt>
+  <dd><%= @choice.application_id %></dd>
+</dl>
 
-<p>
-  <strong>Statement:</strong>
-  <%= @choice.statement %>
-</p>
-
-<p>
-  <strong>Organization:</strong>
-  <%= @choice.organization %>
-</p>
-
-<p>
-  <strong>Application:</strong>
-  <%= @choice.application %>
-</p>
-
-<%= link_to 'Edit', edit_choice_path(@choice) %> |
-<%= link_to 'Back', choices_path %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              choices_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_choice_path(@choice), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              choice_path(@choice),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
