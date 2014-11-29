@@ -1,0 +1,54 @@
+<% title 'Explore Fellowships' %>
+
+<div class="page-header">
+  <h1>Explore Fellowships</h1>
+  <p>Take a look at the fellowships we have ready for you this summer!</p>
+  <p>When you are ready to begin your application, <%= link_to "click here.", apply_path %></p>
+</div>
+
+<div class="fellowship-explore">
+
+<ul class="nav nav-pills nav-justified" id="fellowship-tabs">
+  <% @categories.each_with_index do |(category, category_name), i| %>
+    <li class="<%= i == 0 ? 'active' : '' %>">
+      <a href="#<%= category %>" data-toggle="tab"><%= category_name %></a>
+    </li>
+  <% end %>
+</ul>
+
+<div class="tab-content">
+  <% @categories.each_with_index do |(category, category_name), i| %>
+    <div class="row tab-pane fade in<%= i == 0 ? ' active' : '' %>" id="<%= category %>">
+
+      <% @fellowships.select{|f| f.category == category.to_s}.each do |f| %>
+
+        <div class="col-sm-4">
+          <%= link_to f.url do %>
+          <div class="panel panel-default fellowship-block">
+            <div class="panel-heading">
+              <div class="fellowship-block-thumb"><%= f.logo? ? image_tag(f.logo.url(:thumb)) : ''%></div>
+            </div>
+            <div class="panel-body">
+              <div class="fellowship-block-header">
+                <span class="fellowship-city"><%= "#{f.city}, #{f.state}" %></span>
+                <span class="fellowship-name"><%= f.name %></span>
+              </div>
+            </div>
+          </div>
+          <% end %>
+        </div>
+
+      <% end %>
+
+    </div>
+  <% end %>
+</div>
+
+</div>
+
+<script>
+$('#fellowship-tabs a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+</script>

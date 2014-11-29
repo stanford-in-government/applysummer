@@ -6,8 +6,8 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:logo) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:url) %></th>
       <th><%= model_class.human_attribute_name(:category) %></th>
       <th><%= model_class.human_attribute_name(:description) %></th>
       <th><%= model_class.human_attribute_name(:city) %></th>
@@ -20,8 +20,8 @@
     <% @organizations.each do |organization| %>
       <tr>
         <td><%= link_to organization.id, organization_path(organization) %></td>
-        <td><%= organization.name %></td>
-        <td><%= organization.url %></td>
+        <td><%= organization.logo? ? image_tag(organization.logo.url(:thumb)) : '' %></td>
+        <td><%= organization.url.blank? ? organization.name : link_to(organization.name, organization.url) %></td>
         <td><%= organization.category %></td>
         <td><%= organization.description %></td>
         <td><%= organization.city %></td>

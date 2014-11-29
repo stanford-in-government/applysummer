@@ -1,5 +1,5 @@
 gem install mailcatcher
-sudo apt-get install postgresql postgresql-contrib postgresql-server-dev-9.3
+sudo apt-get install postgresql postgresql-contrib postgresql-server-dev-9.3 imagemagick
 
 sudo -u postgres psql
 CREATE ROLE fellowship WITH CREATEDB LOGIN PASSWORD 'a12345';

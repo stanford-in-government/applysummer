@@ -1,10 +1,12 @@
-<%= simple_form_for @organization, :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for @organization do |f| %>
   <%= f.input :name %>
   <%= error_span(@organization[:name]) %>
   <%= f.input :url %>
   <%= error_span(@organization[:url]) %>
   <%= f.input :category, collection: Organization::CATEGORIES %>
   <%= error_span(@organization[:category]) %>
+  <%= f.input :logo %>
+  <%= error_span(@organization[:logo]) %>
   <%= f.input :description %>
   <%= error_span(@organization[:description]) %>
   <%= f.input :city %>

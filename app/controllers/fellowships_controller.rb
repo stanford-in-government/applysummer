@@ -1,14 +1,13 @@
 class FellowshipsController < ApplicationController
   before_action :authenticate_user!, only: [ :rank, :save_choices ]
   before_action :get_application, only: [ :rank, :save_choices ]
+  before_action :get_fellowships, only: [ :index, :rank ]
 
   def index
   end
 
   def rank
     @choices = @application.choices_for_frontend
-    @fellowships = Organization.all.order(category: :asc, name: :asc)
-    @categories = Organization.category_tuples
     @num_selected = Fellowship::Application.config.fellowship.num_selected
     @num_applied = Fellowship::Application.config.fellowship.num_applied
   end
@@ -32,5 +31,10 @@ class FellowshipsController < ApplicationController
   private
     def get_application
       @application = Application.get_or_create_current_application(current_user, :fellowship)
+    end
+
+    def get_fellowships
+      @fellowships = Organization.all.order(category: :asc, name: :asc)
+      @categories = Organization.category_tuples
     end
 end

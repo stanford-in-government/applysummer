@@ -11,6 +11,11 @@ footer {
   margin-top: 50px;
 }
 
+a {
+  transition-duration: 0.2s;
+  -webkit-transition-duration: 0.2s;
+}
+
 .container {
   max-width: 760px;
 }
