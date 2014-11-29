@@ -38,3 +38,6 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # Heroku
 gem 'rails_12factor', group: :production
 gem 'unicorn', group: :production
+
+# Amazon S3 for storing uploaded files
+gem 'aws-sdk', '~> 1.5.7', group: :production
