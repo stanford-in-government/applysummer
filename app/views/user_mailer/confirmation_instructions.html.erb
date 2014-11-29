@@ -1,0 +1,16 @@
+<%= render 'header' %>
+
+<div class="page-header">
+    <h1>Thanks for registering!</h1>
+    <p>You are almost ready to submit your application for a SIG summer opportunity!</p>
+</div>
+
+<p>Please confirm your account email through the link below:</p>
+
+<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token), class: 'btn btn-lg btn-primary' %></p>
+
+<p>If the link doesn't work, then manually copy the URL below:</p>
+
+<p><%= confirmation_url(@resource, confirmation_token: @token) %></p>
+
+<%= render 'footer' %>

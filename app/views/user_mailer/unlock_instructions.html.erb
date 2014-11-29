@@ -1,0 +1,12 @@
+<%= render 'header' %>
+
+<div class="page-header">
+    <h1>Hello <%= @resource.email %>!</h1>
+    <p>Your account has been locked due to an excessive number of unsuccessful sign in attempts.</p>
+</div>
+
+<p>Click the link below to unlock your account:</p>
+
+<p><%= link_to 'Unlock my account', unlock_url(@resource, unlock_token: @token), class: 'btn btn-lg btn-primary' %></p>
+
+<%= render 'footer' %>

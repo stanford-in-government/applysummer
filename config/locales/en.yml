@@ -20,6 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  site_name: SIG Summer Application
   activerecord:
     attributes:
       document:
