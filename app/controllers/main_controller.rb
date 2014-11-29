@@ -15,6 +15,7 @@ class MainController < ApplicationController
   end
 
   def apply_to
+    @num_applied = Fellowship::Application.config.fellowship.num_applied
     @profile_exists = current_user.has_profile?
     @resume_exists = current_user.has_resume?
     @transcript_exists = current_user.has_transcript?
