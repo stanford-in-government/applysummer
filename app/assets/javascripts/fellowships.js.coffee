@@ -70,6 +70,9 @@ window.initRanker = (options) ->
       dropdown.html("<p>You have submitted your preferences.</p>
         <a href=\"#{options.return_url}\" class=\"btn btn-primary\">Back</a>")
 
+  getFullCity = (f) ->
+    if f.state?.length then "#{f.city}, #{f.state}" else f.city
+
   updateMenuItems = ->
     for submenu in $('.dropdown-menu', dropdown)
       submenu = $(submenu)
@@ -81,7 +84,7 @@ window.initRanker = (options) ->
         <li class=\"#{cls}\">
           <a class=\"fellowship-choice\" tabindex=\"-1\" href=\"#\" data-fellowship-id=\"#{f.id}\">
             #{f.name}
-            <span class=\"fellowship-city\">#{f.city}, #{f.state}</span>
+            <span class=\"fellowship-city\">#{getFullCity(f)}</span>
           </a>
         </li>"
       ), ''
@@ -115,7 +118,7 @@ window.initRanker = (options) ->
             <div class=\"rank-badge pull-left\"><span class=\"badge\">#{i + 1}</span></div>
 
             <h2 class=\"panel-title\">#{f.name}
-              <span class=\"fellowship-city\">#{f.city}, #{f.state}</span>
+              <span class=\"fellowship-city\">#{getFullCity(f)}</span>
             </h2>  
           </div>
           <div class=\"panel-body\">
