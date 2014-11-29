@@ -13,11 +13,11 @@ class Application < ActiveRecord::Base
   enum category: CATEGORIES
 
   def has_personal_statement?
-    !pers_statement.nil? && pers_statement.size > 0
+    !pers_statement.blank?
   end
 
   def has_relevant_coursework?
-    !rel_coursework.nil? && rel_coursework.size > 0
+    !rel_coursework.blank?
   end
 
   def generate_rec_code

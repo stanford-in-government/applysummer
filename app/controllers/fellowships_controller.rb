@@ -19,12 +19,12 @@ class FellowshipsController < ApplicationController
     @application.update_choices_from_frontend(JSON.parse(params[:json]))
 
     if params[:type] == 'submit'
-      if @application.choices_filled?
-        @application.completed!
-        flash[:notice] = 'Your fellowship preferences have been submitted!'
-      else
+      unless @application.choices_filled?
         return render text: 'You must provide all responses and rank at least one fellowship before you can submit.', status: :bad_request
       end
+
+      @application.completed!
+      flash[:notice] = 'Your fellowship preferences have been submitted!'
     end
     render nothing: true, status: :ok
   end
