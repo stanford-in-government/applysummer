@@ -36,6 +36,18 @@ class MainController < ApplicationController
   end
 
   def rec
+    logger.debug params[:rec_code]
+    @application = Application.where(rec_code: params[:rec_code]).take
+    if @application.nil?
+      flash[:error] = 'Invalid recommendation code.'
+      redirect_to root_path
+    end
+    @rec = Recommendation.new
+    @rec.application = @application
+    if params.has_key?(:recommendation) && @rec.update(recommendation_params)
+      flash[:notice] = "Recommendation received."
+      redirect_to root_path
+    end
   end
 
   def confirmed
@@ -90,5 +102,9 @@ class MainController < ApplicationController
 
     def application_params
       params.require(:application).permit(:pers_statement, :rel_coursework)
+    end
+
+    def recommendation_params
+      params.require(:recommendation).permit(:letter, :text, :email, :name)
     end
 end

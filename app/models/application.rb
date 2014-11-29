@@ -4,6 +4,7 @@ class Application < ActiveRecord::Base
 
   belongs_to :user
   has_many :choices, dependent: :destroy
+  has_many :recommendations, dependent: :destroy
 
   STATUSES = [ :incomplete, :completed, :archived ]
   CATEGORIES = [ :fellowship ]

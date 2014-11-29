@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :recommendations
+
   devise_for :users, controllers: {
     confirmations: 'users/confirmations'
   }

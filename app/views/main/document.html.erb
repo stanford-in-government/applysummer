@@ -23,7 +23,7 @@
     </div>
     <div class="panel-body">
       <p>Please convert to <strong>pdf</strong> format before uploading.</p>
-      <%= simple_form_for(@document, url: user_document_path, html: { :multipart => true }) do |f| %>
+      <%= simple_form_for(@document, url: user_document_path, html: { method: :post, multipart: true }) do |f| %>
         <%= f.input :file %>
         <%= error_span(@document[:file]) %>
 

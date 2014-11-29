@@ -8,3 +8,9 @@ $ ->
     e.preventDefault()
   autoSelect.focus ->
     $(this).select()
+
+  autoExpand = $('textarea[data-behavior="auto-expand"]')
+  autoExpand.focus ->
+    $(this).animate({rows: 10}, 200)
+  autoExpand.blur ->
+    $(this).animate({rows: 2}, 200)

@@ -2,3 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 /* Space out content a bit */
+
+.student-name {
+  font-size: 2.0em;
+  font-weight: 700;
+  text-align: center;
+}
+
+.rec-form .row {
+  margin-bottom: 30px;
+  margin-top: 30px;
+}

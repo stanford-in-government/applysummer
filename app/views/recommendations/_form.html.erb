@@ -1,0 +1,14 @@
+<%= simple_form_for @recommendation, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :email %>
+  <%= error_span(@recommendation[:email]) %>
+  <%= f.input :name %>
+  <%= error_span(@recommendation[:name]) %>
+  <%= f.input :application_id %>
+  <%= error_span(@recommendation[:application_id]) %>
+  <%= f.input :text %>
+  <%= error_span(@recommendation[:text]) %>
+
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                recommendations_path, :class => 'btn btn-default' %>
+<% end %>
