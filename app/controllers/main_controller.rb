@@ -23,6 +23,7 @@ class MainController < ApplicationController
     @relevant_coursework_exists = @application.has_relevant_coursework?
     @ranking_exists = @application.choices_filled?
     @ranking_submitted = @application.completed?
+    @rec_exists = false
   end
 
   def statement
@@ -32,6 +33,9 @@ class MainController < ApplicationController
         redirect_to apply_to_path(@category)
       end
     end
+  end
+
+  def rec
   end
 
   def confirmed

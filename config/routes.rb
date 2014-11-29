@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get 'apply' => 'main#apply', as: :apply
   get 'apply/:category' => 'main#apply_to', as: :apply_to
   match 'apply/:category/statement' => 'main#statement', as: :statement, via: [ :get, :post ]
+  match 'rec/:rec_code' => 'main#rec', as: :rec, via: [ :get, :post ]
   match 'profile' => 'main#profile', as: :user_profile, via: [ :get, :post ]
   match 'document' => 'main#document', as: :user_document, via: [ :get, :post ]
 

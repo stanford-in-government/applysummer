@@ -1,7 +1,7 @@
 <%- model_class = Application -%>
 <div class="page-header">
   <h1>Your <%= model_class.human_attribute_name(@category) %> Application</h1>
-  <p>There are five steps to completing your application. When all the steps below are showing <span class="label label-success">Completed</span>, then you have completed your application process.</p>
+  <p>There are five steps to completing your application. When all the steps below are showing <span class="label label-success">Completed</span> then you have completed your application process.</p>
 </div>
 
 
@@ -17,7 +17,7 @@ Profile
   </div>
   <div class="col-md-8">
 
-    <div class="panel panel-default">
+    <div class="panel panel-<%= @profile_exists ? 'success' : 'danger' %>">
       <div class="panel-heading clearfix">
         <h3 class="panel-title">Step 1</h3>
       </div>
@@ -53,13 +53,13 @@ Documents
   </div>
   <div class="col-md-8">
 
-    <div class="panel panel-default">
+    <div class="panel panel-<%= @resume_exists && @transcript_exists ? 'success' : 'danger' %>">
       <div class="panel-heading clearfix">
         <h3 class="panel-title">Step 2</h3>
       </div>
       <div class="panel-body">
 
-        <p>Upload supporting documents. This should include your resume and transcript.</p>
+        <p>Upload supporting documents. This should at least include your resume and transcript, but you may also submit other relevant documents.</p>
 
         <!-- button -->
         <%= link_to user_document_path(return_to: true), class: 'btn btn-lg btn-default' do %>
@@ -88,7 +88,7 @@ Responses
   </div>
   <div class="col-md-8">
 
-    <div class="panel panel-default">
+    <div class="panel panel-<%= @personal_statement_exists && @relevant_coursework_exists ? 'success' : 'danger' %>">
       <div class="panel-heading clearfix">
         <h3 class="panel-title">Step 3</h3>
       </div>
@@ -122,7 +122,7 @@ Preferences
   </div>
   <div class="col-md-8">
 
-    <div class="panel panel-default">
+    <div class="panel panel-<%= @ranking_submitted ? 'success' : @ranking_exists ? 'warning' : 'danger' %>">
       <div class="panel-heading clearfix">
         <h3 class="panel-title">Step 4</h3>
       </div>
@@ -135,6 +135,9 @@ Preferences
           <i class="fa fa-fw fa-sort-amount-desc" aria-hidden="true"></i> Rank Fellowships
         <% end %>
       </div>
+      <% if !@ranking_submitted && @ranking_exists %>
+        <div class="panel-footer">This step will be marked as completed only after you submit (and not just save) your preferences.</div>
+      <% end %>
     </div>
   </div>
 </div>
@@ -147,28 +150,32 @@ Recommendations
 <div class="row">
   <div class="col-md-2">
     <!-- status labels -->
-    <% if @ranking_submitted %>
-      <%= print_status_label(:completed, 'success') %>
-    <% else %>
-      <%= @ranking_exists ? print_status_label(:not_submitted, 'warning') : print_status_label(:incomplete, 'danger') %>
-    <% end %>
+    <%= @rec_exists ? print_status_label(:completed, 'success') : print_status_label(:not_received, 'danger') %>
     <!-- /status labels -->
   </div>
   <div class="col-md-8">
 
-    <div class="panel panel-default">
+    <div class="panel panel-<%= @rec_exists ? 'success' : 'danger' %>">
       <div class="panel-heading clearfix">
         <h3 class="panel-title">Step 5</h3>
       </div>
       <div class="panel-body">
 
-        <p>Provide the following URL to your professors/mentors so that they can submit letters of recommendations for you:</p>
+        <p>Get letters of recommendation. Provide the following URL to your professors/mentors so that they can submit recommendations for you:</p>
 
-        <!-- button -->
-        <%= link_to fellowships_rank_path(return_to: true), class: 'btn btn-lg btn-default' do %>
-          <i class="fa fa-fw fa-sort-amount-desc" aria-hidden="true"></i> Copy Link to Clipboard
-        <% end %>
+        <div class="input-group">
+          <input type="text" class="form-control" value="<%= rec_url(rec_code: @application.rec_code) %>" data-behavior="auto-select">
+          <span class="input-group-btn">
+            <a class="btn btn-default" href="mailto:?subject=SIG+Fellowship+-+Letter+of+Recommendation&amp;body=<%= rec_url(rec_code: @application.rec_code) %>"><i class="fa fa-fw fa-paper-plane" aria-hidden="true"></i> Email</a>
+          </span>
+        </div>
+
+        
+
       </div>
+      <% unless @ranking_submitted %>
+        <div class="panel-footer">This step will be marked as completed when you have receive at least one letter of recommendation.</div>
+      <% end %>
     </div>
   </div>
 </div>
