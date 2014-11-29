@@ -1,6 +1,7 @@
 body {
   padding-top: 20px;
   padding-bottom: 20px;
+  font-family: Verdana, Arial, sans-serif;
 }
 
 header {
@@ -8,7 +9,17 @@ header {
 }
 
 footer {
-  margin-top: 50px;
+  margin-top: 60px;
+  text-align: center;
+  font-size: 0.9em;
+  color: #999;
+  a {
+    color: #555;
+  }
+}
+
+.main-content-body {
+  min-height: 520px;
 }
 
 a {
@@ -17,11 +28,26 @@ a {
 }
 
 .container {
-  max-width: 760px;
+  max-width: 820px;
+}
+
+.page-header {
+  margin-bottom: 50px;
+}
+
+.page-header p {
+  color: #555;
 }
 
 .nav-devise {
   margin-top: 10px;
+}
+
+.devise-footer {
+  a {
+    color: #555;
+    text-transform: lowercase;
+  }
 }
 
 header p {

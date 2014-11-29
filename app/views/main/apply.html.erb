@@ -1,10 +1,12 @@
+<% title 'Start Your Application' %>
+
 <%- model_class = Application -%>
 <div class="panel panel-default">
   <div class="panel-heading"><h2>Start Your Application</h2></div>
   <div class="panel-body">
     <p>Please select the summer opportunity you are applying for:</p>
     <% @categories.each do |category| %>
-      <%= link_to model_class.human_attribute_name(category), apply_to_path(category), class: 'btn btn-large btn-default' %>
+      <%= link_to model_class.human_attribute_name(category), apply_to_path(category), class: 'btn btn-lg btn-default' %>
     <% end %>
   </div>
 </div>

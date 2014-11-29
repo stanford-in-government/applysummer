@@ -12,6 +12,8 @@
       <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js" type="text/javascript"></script>
     <![endif]-->
 
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet'  type='text/css'>
+
     <%= stylesheet_link_tag "application", :media => "all" %>
 
     <!-- For third-generation iPad with high-resolution Retina display: -->
@@ -51,7 +53,7 @@
       </div><!--/row-->
 
       <footer>
-        <p>&copy; Stanford in Government</p>
+        <%= render "footer" %>
       </footer>
 
     </div> <!-- /container -->

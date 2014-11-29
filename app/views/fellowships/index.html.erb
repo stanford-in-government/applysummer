@@ -8,7 +8,7 @@
 
 <div class="fellowship-explore">
 
-<ul class="nav nav-pills nav-justified" id="fellowship-tabs">
+<ul class="nav nav-tabs nav-justified" id="fellowship-tabs">
   <% @categories.each_with_index do |(category, category_name), i| %>
     <li class="<%= i == 0 ? 'active' : '' %>">
       <a href="#<%= category %>" data-toggle="tab"><%= category_name %></a>
