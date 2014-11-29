@@ -23,14 +23,18 @@
     </div>
     <div class="panel-body">
       <p>Please convert to <strong>pdf</strong> format before uploading.</p>
-      <%= simple_form_for(@document, :url => user_document_path, :html => { :multipart => true }) do |f| %>
+      <%= simple_form_for(@document, url: user_document_path, html: { :multipart => true }) do |f| %>
         <%= f.input :file %>
         <%= error_span(@document[:file]) %>
 
-        <%= f.input :category, as: :radio_buttons, label: 'document type', collection: Document::CATEGORIES %>
+        <%= f.input :category, as: :radio_buttons, collection: Document::CATEGORIES %>
         <%= error_span(@document[:category]) %>
       
-        <%= f.button :submit, 'Upload', :class => 'btn-primary btn btn-lg' %>  
+        <%= f.button :submit, 'Upload', class: 'btn-primary btn btn-lg' %>
+
+        <% if @return_to %>
+          <%= link_to 'Back', @return_to, class: 'btn-default btn' %>
+        <% end %>
         <% end %>
     </div>
   </div>

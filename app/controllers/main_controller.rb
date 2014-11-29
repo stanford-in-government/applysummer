@@ -37,10 +37,6 @@ class MainController < ApplicationController
   end
 
   def profile
-    if params.has_key?(:redirect)
-      session[:return_to] = request.referer
-    end
-
     @profile = current_user.profile
     if @profile.nil?
       @profile = Profile.new
@@ -53,7 +49,7 @@ class MainController < ApplicationController
           flash.now[:notice] = "Profile successfully saved."
         else
           flash[:notice] = "Profile successfully saved."
-          redirect_to session.delete(:return_to)
+          redirect_to session[:return_to]
         end
       end
     end

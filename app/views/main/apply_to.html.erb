@@ -4,15 +4,23 @@
   <div class="panel-body">
     <p>There are five steps to completing your application. When all the steps below are showing <span class="label label-success">Completed</span>, then you have completed your application process.</p>
 
+    <!--
+    Profile
+    -->
+
     <h3>Step 1</h3>
 
     <p>Make sure that your profile is updated.</p>
 
     <%= @profile_exists ? print_status_label(:completed, 'success') : print_status_label(:incomplete, 'danger') %>
 
-    <%= link_to user_profile_path(redirect: true), class: 'btn btn-large btn-default' do %>
+    <%= link_to user_profile_path(return_to: true), class: 'btn btn-lg btn-default' do %>
       <i class="fa fa-fw fa-user" aria-hidden="true"></i> Edit Profile
     <% end %>
+
+    <!--
+    Documents
+    -->
 
     <h3>Step 2</h3>
 
@@ -25,9 +33,13 @@
       <%= @transcript_exists ? print_status_label(:transcript_uploaded, 'success') : print_status_label(:transcript_missing, 'danger') %>
     <% end %>
 
-    <%= link_to user_document_path, class: 'btn btn-large btn-default' do %>
+    <%= link_to user_document_path(return_to: true), class: 'btn btn-lg btn-default' do %>
       <i class="fa fa-fw fa-file-pdf-o" aria-hidden="true"></i> Upload Documents
     <% end %>
+
+    <!--
+    Responses
+    -->
 
     <h3>Step 3</h3>
 
@@ -40,9 +52,13 @@
       <%= @relevant_coursework_exists ? print_status_label(:relevant_coursework_submitted, 'success') : print_status_label(:relevant_coursework_missing, 'danger') %>
     <% end %>
 
-    <%= link_to statement_path(@category), class: 'btn btn-large btn-default' do %>
+    <%= link_to statement_path(@category, return_to: true), class: 'btn btn-lg btn-default' do %>
       <i class="fa fa-fw fa-pencil" aria-hidden="true"></i> Short Responses
     <% end %>
+
+    <!--
+    Preferences
+    -->
 
     <h3>Step 4</h3>
 
@@ -54,7 +70,7 @@
       <%= @ranking_exists ? print_status_label(:preferences_not_submitted, 'warning') : print_status_label(:preferences_incomplete, 'danger') %>
     <% end %>
 
-    <%= link_to fellowships_rank_path, class: 'btn btn-large btn-default' do %>
+    <%= link_to fellowships_rank_path(return_to: true), class: 'btn btn-lg btn-default' do %>
       <i class="fa fa-fw fa-sort-amount-desc" aria-hidden="true"></i> Rank Fellowships
     <% end %>
   </div>

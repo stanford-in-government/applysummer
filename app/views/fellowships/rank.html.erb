@@ -10,6 +10,10 @@
   <p>Note that your preferences and write-ups will not be saved until you click on <a class="btn btn-sm btn-default" data-action="save"><i class="fa fa-spin"></i> Save </a></p>
 
   <p>Once you submit your preferences, you will no longer be able to edit them. You need to submit your preferences before the deadline in order to finalize your application.</p>
+
+  <% if @return_to %>
+    <%= link_to 'Back', @return_to, class: 'btn-default btn' %>
+  <% end %>
 </div>
 
 <div class="row">
