@@ -63,8 +63,8 @@
       max_applied: <%= @num_applied %>,
       save_url: '<%= fellowships_save_path %>',
       return_url: '<%= apply_to_path(:fellowship) %>',
-      choices: JSON.parse('<%= raw(@choices.to_json) %>'),
-      fellowships: JSON.parse('<%= raw(@fellowships.to_json) %>'),
+      choices: JSON.parse('<%= to_json @choices %>'),
+      fellowships: JSON.parse('<%= to_json @fellowships %>'),
       submitted: <%= @application.completed? %>
     })
   });
