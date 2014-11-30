@@ -3,6 +3,8 @@ class Profile < ActiveRecord::Base
   validates :first_name, :last_name, :local_street, :local_city, :local_state,
   :local_postal, :perm_street, :perm_city, :perm_state, :perm_country,
   :perm_postal, :majors, :class_year, :overall_gpa, :major_gpa, presence: true
+  validates_numericality_of :overall_gpa, :major_gpa, greater_than_or_equal_to: 0.0, less_than_or_equal_to: 4.3
+  validates_numericality_of :class_year, only_integer: true
   after_commit :update_user_name
 
   def full_name

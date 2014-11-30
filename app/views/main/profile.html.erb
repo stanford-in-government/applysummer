@@ -122,11 +122,11 @@
         <%= error_span(@profile[:class_year]) %>
       </div>
       <div class="col-md-4">
-        <%= f.input :overall_gpa, placeholder: '4.00' %>
+        <%= f.input :overall_gpa, placeholder: '4.00', input_html: {value: number_with_precision(f.object.overall_gpa, precision: 2) } %>
         <%= error_span(@profile[:overall_gpa]) %>
       </div>
       <div class="col-md-4">
-        <%= f.input :major_gpa, placeholder: '4.00' %>
+        <%= f.input :major_gpa, placeholder: '4.00', input_html: {value: number_with_precision(f.object.major_gpa, precision: 2) } %>
         <%= error_span(@profile[:major_gpa]) %>
       </div>
     </div>
