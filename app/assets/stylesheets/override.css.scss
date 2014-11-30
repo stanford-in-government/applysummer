@@ -22,6 +22,12 @@ footer {
   min-height: 520px;
 }
 
+.frontpage-jumbotron {
+  background-image: url(image-path('prague.jpg'));
+  background-size: cover;
+  color: #fff;
+}
+
 a {
   transition-duration: 0.2s;
   -webkit-transition-duration: 0.2s;
