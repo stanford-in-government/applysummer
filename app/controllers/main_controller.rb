@@ -5,6 +5,12 @@ class MainController < ApplicationController
   def index
   end
 
+  def confirmed
+  end
+
+  def faq
+  end
+
   def apply
     @categories = Application::CATEGORIES
     application = current_user.applications.where("status <> ?", Application.statuses[:archived]).take
@@ -48,9 +54,6 @@ class MainController < ApplicationController
       flash[:notice] = "Recommendation received."
       redirect_to root_path
     end
-  end
-
-  def confirmed
   end
 
   def profile

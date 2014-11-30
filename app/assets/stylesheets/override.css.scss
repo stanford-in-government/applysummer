@@ -23,9 +23,19 @@ footer {
 }
 
 .frontpage-jumbotron {
-  background-image: url(image-path('prague.jpg'));
+  background-image: image-url('prague.jpg');
   background-size: cover;
+  background-position: center; 
   color: #fff;
+}
+
+.lincoln-side-bar {
+  background-image: image-url('lincoln.jpg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  width: 100%;
+  min-height: 600px;
 }
 
 a {

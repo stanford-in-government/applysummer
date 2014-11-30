@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   post 'fellowships/rank/save' => 'fellowships#save_choices', as: :fellowships_save
 
   get 'confirmed' => 'main#confirmed'
+  get 'faq' => 'main#faq'
   get 'apply' => 'main#apply', as: :apply
   get 'apply/:category' => 'main#apply_to', as: :apply_to
   match 'apply/:category/statement' => 'main#statement', as: :statement, via: [ :get, :post ]
