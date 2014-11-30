@@ -20,6 +20,10 @@ class Application < ActiveRecord::Base
     !rel_coursework.blank?
   end
 
+  def has_recommendations?
+    recommendations.count > 0
+  end
+
   def generate_rec_code
     self.rec_code ||= loop do
       random_token = SecureRandom.hex(10)

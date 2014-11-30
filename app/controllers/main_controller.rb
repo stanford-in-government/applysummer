@@ -23,7 +23,7 @@ class MainController < ApplicationController
     @relevant_coursework_exists = @application.has_relevant_coursework?
     @ranking_exists = @application.choices_filled?
     @ranking_submitted = @application.completed?
-    @rec_exists = false
+    @rec_exists = @application.has_recommendations?
   end
 
   def statement
