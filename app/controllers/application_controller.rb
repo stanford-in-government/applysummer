@@ -5,6 +5,11 @@ class ApplicationController < ActionController::Base
 
   before_action :set_return_to, :reset_return_to
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, alert: exception.message
+  end
+
+
   def after_sign_in_path_for(resource)
     if resource.is_a?(User) && !resource.has_profile?
       confirmed_path

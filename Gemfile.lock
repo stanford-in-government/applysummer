@@ -36,6 +36,7 @@ GEM
       uuidtools (~> 2.1)
     bcrypt (3.1.9)
     builder (3.2.2)
+    cancan (1.6.10)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.4)
@@ -183,6 +184,7 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk (~> 1.5.7)
+  cancan (~> 1.6)
   coffee-rails (~> 4.0.0)
   country_select
   devise (~> 3.4.1)

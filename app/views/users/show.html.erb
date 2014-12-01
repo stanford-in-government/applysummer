@@ -32,6 +32,8 @@
   <dd><%= @user.confirmation_sent_at %></dd>
   <dt><strong><%= model_class.human_attribute_name(:unconfirmed_email) %>:</strong></dt>
   <dd><%= @user.unconfirmed_email %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:role) %>:</strong></dt>
+  <dd><%= @user.role %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),

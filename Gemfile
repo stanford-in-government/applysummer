@@ -9,6 +9,7 @@ gem 'country_select'
 
 # User authentication
 gem 'devise', '~> 3.4.1'
+gem 'cancan', '~> 1.6'
 
 # File uploading
 gem 'paperclip', '~> 4.2'

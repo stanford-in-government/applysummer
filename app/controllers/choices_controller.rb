@@ -1,5 +1,7 @@
 class ChoicesController < ApplicationController
   before_action :set_choice, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  load_and_authorize_resource
 
   respond_to :html
 

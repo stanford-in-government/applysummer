@@ -1,8 +1,14 @@
-<%= simple_form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for @user do |f| %>
+  <%= f.input :email, disabled: true %>
+  <%= error_span(@user[:email]) %>
   <%= f.input :name %>
   <%= error_span(@user[:name]) %>
-  <%= f.input :email %>
-  <%= error_span(@user[:email]) %>
+  <%= f.input :reset_password_token, as: :string %>
+  <%= error_span(@user[:reset_password_token]) %>
+  <%= f.input :confirmation_token %>
+  <%= error_span(@user[:confirmation_token]) %>
+  <%= f.input :role,  collection: User::ROLES %>
+  <%= error_span(@user[:role]) %>
 
   <%= f.button :submit, :class => 'btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
