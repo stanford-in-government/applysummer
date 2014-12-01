@@ -35,8 +35,7 @@ class MainController < ApplicationController
   def statement
     if params.has_key?(:application)
       if @application.update(application_params)
-        flash[:notice] = "Responses successfully saved."
-        redirect_to apply_to_path(@category)
+        redirect_to apply_to_path(@category), notice: "Responses successfully saved."
       end
     end
   end
@@ -45,14 +44,12 @@ class MainController < ApplicationController
     logger.debug params[:rec_code]
     @application = Application.where(rec_code: params[:rec_code]).take
     if @application.nil?
-      flash[:error] = 'Invalid recommendation code.'
-      redirect_to root_path
+      redirect_to root_path, flash: { error: 'Invalid recommendation code.' }
     end
     @rec = Recommendation.new
     @rec.application = @application
     if params.has_key?(:recommendation) && @rec.update(recommendation_params)
-      flash[:notice] = "Recommendation received."
-      redirect_to root_path
+      redirect_to root_path, notice: 'Recommendation received.'
     end
   end
 
@@ -68,8 +65,7 @@ class MainController < ApplicationController
         if session[:return_to].nil?
           flash.now[:notice] = "Profile successfully saved."
         else
-          flash[:notice] = "Profile successfully saved."
-          redirect_to session[:return_to]
+          redirect_to session[:return_to], notice: "Profile successfully saved."
         end
       end
     end
