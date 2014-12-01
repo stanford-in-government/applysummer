@@ -39,22 +39,17 @@
   <body>
 
     <div class="container">
-      <header class="clearfix">
-        <%= render "header" %>
-      </header>
+      <%= render "header" %>
 
       <div class="row main-content-body">
         <div class="col-lg-12">
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
-      </div><!--/row-->
+      </div>
 
-      <footer>
-        <%= render "footer" %>
-      </footer>
-
-    </div> <!-- /container -->
+      <%= render "footer" %>
+    </div>
 
   </body>
 </html>

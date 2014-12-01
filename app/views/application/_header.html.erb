@@ -1,3 +1,8 @@
+<% if user_signed_in? %>
+  <div class="signed-in">Welcome, <strong><%= current_user.email %></strong></div>
+<% end %>
+
+<header class="clearfix">  
 <nav class="pull-left">
   <%= link_to "Home", root_url, class: "btn" %>
   <%= link_to "Explore", fellowships_url, class: "btn"  %>
@@ -5,7 +10,6 @@
 </nav>
 <nav class="pull-right">
 <% if user_signed_in? %>
-  <p>Welcome, <strong><%= current_user.email %></strong></p>
   <div class="btn-group">
     <%= link_to "Apply", apply_path, class: "btn btn-primary" %>
     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -33,3 +37,5 @@
   <%= link_to "Log In", new_user_session_path, class: "btn"  %>
 <% end %>
 </nav>
+
+</header>
