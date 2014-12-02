@@ -9,15 +9,6 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, alert: exception.message
   end
 
-
-  def after_sign_in_path_for(resource)
-    if resource.is_a?(User) && !resource.has_profile?
-      confirmed_path
-    else
-      super
-    end
-  end
-
   private
     def reset_return_to
       if session[:return_to] == request.original_url
