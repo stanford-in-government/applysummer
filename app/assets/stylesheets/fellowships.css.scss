@@ -33,10 +33,6 @@
   margin-right: 20px;
 }
 
-.fellowship-block {
-  height: 320px;
-}
-
 .fellowship-block-header {
   font-size: 1.1em;
   overflow: hidden;
@@ -53,15 +49,50 @@
 }
 
 .fellowship-explore {
-  a:hover {
-    text-decoration: none;
-    .panel {
-      transition-duration: 0.3s;
-      -webkit-transition-duration: 0.3s;
-      box-shadow: 0px 0px 10px #aaa;
-    }
-  }
   .row {
     margin-top: 40px;
+  }
+  a {
+    text-decoration: none;
+  }
+}
+
+.fellowship-block {
+  transition-duration: 0.3s;
+  -webkit-transition-duration: 0.3s;
+}
+
+.fellowship-block:hover {
+  transform: translate(-5px,-5px);
+  box-shadow: 5px 5px 0px rgba(0,0,0,0.3);
+}
+
+@media (min-width: 750px) {
+  .fellowship-block {
+    height: 320px;
+  }
+}
+
+@media (max-width: 749px) {
+  .fellowship-block {
+    clear: both;
+    .panel-heading {
+      width: 30%;
+      min-height: 150px;
+      float: left;
+      border-bottom: 0;
+      border-right: 1px solid #ddd;
+      border-top-right-radius: 0;
+      border-bottom-left-radius: 3px
+    }
+    .panel-body {
+      float: left;
+      width: 70%;
+    }
+  }
+
+  .fellowship-block-thumb img, .fellowship-block-thumb {
+    width: 100%;
+    height: 100%;
   }
 }
