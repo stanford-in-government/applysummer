@@ -54,7 +54,11 @@ class ApplicationsController < ApplicationController
 
   def destroy
     @application.destroy
-    respond_with(@application)
+    if current_user.admin?
+      respond_with(@application)
+    else
+      redirect_to root_url, notice: 'Application deleted.'
+    end
   end
 
   private

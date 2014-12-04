@@ -15,7 +15,6 @@ class MainController < ApplicationController
     @categories = Application::CATEGORIES
     application = current_user.applications.where("status <> ?", Application.statuses[:archived]).take
     if application
-      puts application.category
       redirect_to apply_to_path(application.category)
     end
   end
@@ -30,6 +29,8 @@ class MainController < ApplicationController
     @ranking_exists = @application.choices_filled?
     @ranking_submitted = @application.completed?
     @rec_exists = @application.has_recommendations?
+
+    render template: "#{@category.to_s.pluralize}/apply_to"
   end
 
   def statement

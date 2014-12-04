@@ -5,9 +5,23 @@
   <h1>Your <%= model_class.human_attribute_name(@category) %> Application</h1>
   <p>There are five steps to completing your application. When all the steps below are showing <span class="label label-success">Completed</span> then you have completed your application process.</p>
 
-  <p><%= link_to application_path(@application, format: :pdf), class: "btn btn-default#{@profile_exists ? '' : ' disabled'}", data: { toggle: 'tooltip', placement: 'right' }, title: 'Snapshot of your application' do %>
+  <p>
+  <%= link_to application_path(@application, format: :pdf), class: "btn btn-default#{@profile_exists ? '' : ' disabled'}", data: { toggle: 'tooltip', placement: 'left' }, title: 'Snapshot of your application' do %>
     <i class="fa fa-fw fa-download" aria-hidden="true"></i> Download PDF
   <% end %>
+
+  <%= link_to application_path(@application),
+              method: :delete,
+              class: "btn btn-default",
+              data: {
+                toggle: 'tooltip',
+                placement: 'right',
+                confirm: 'Are you sure you want to delete your application?'
+              },
+              title: 'Delete your application' do %>
+    <i class="fa fa-fw fa-trash-o" aria-hidden="true"></i> Delete
+  <% end %>
+
   </p>
 </div>
 
