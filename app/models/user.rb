@@ -7,10 +7,17 @@ class User < ActiveRecord::Base
   has_many :applications, dependent: :destroy
   has_one :profile, dependent: :destroy
 
+  validates :email, format: { with: /\b[A-Z0-9._%a-z\-]+@stanford\.edu\z/,
+                              message: "must be a stanford.edu account" }
+
   # Defaults to applicant
   ROLES = [ :applicant, :reader, :moderator, :admin ]
 
   enum role: ROLES
+
+  def sunetid
+    email.sub '@stanford.edu', ''
+  end
 
   def has_profile?
     !profile.nil?
