@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 # Layout and forms
 gem 'twitter-bootstrap-rails', '~> 3.2'
 gem 'simple_form', '~> 3.1'
+gem 'countries'
 gem 'country_select'
 
 # User authentication
@@ -17,6 +18,10 @@ gem 'paperclip', '~> 4.2'
 # Mailer
 gem 'premailer-rails'
 gem 'nokogiri'
+
+# PDF generation
+gem 'wicked_pdf', '~> 0.11'
+gem 'wkhtmltopdf-binary'
 
 # Rails system
 gem 'rails', '4.1.7'

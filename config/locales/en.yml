@@ -32,3 +32,8 @@ en:
         local_state: Local/State
         dc_national: DC/National
         international: International
+      profile:
+        local_address: Local address
+        perm_address: Permanent address
+        major_gpa: Major GPA
+        overall_gpa: Overall GPA

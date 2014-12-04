@@ -8,6 +8,7 @@ class Ability
     end
 
     can :destroy, Document, user_id: user.id
+    can :manage, Application, user_id: user.id
 
     # Define abilities for the passed in user here. For example:
     #

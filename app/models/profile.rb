@@ -15,6 +15,22 @@ class Profile < ActiveRecord::Base
     end
   end
 
+  def local_address
+    "#{local_street}
+    #{local_city}, #{local_state} #{local_postal}"
+  end
+
+  def perm_address
+    if perm_country == 'US'
+      "#{perm_street}
+      #{perm_city}, #{perm_state} #{perm_postal}"
+    else
+      "#{perm_street}
+      #{perm_city}, #{perm_state}
+      #{Country[perm_country]} #{perm_postal}"
+    end
+  end
+
   # Collection of class years for populating dropdown menu
   # Overly generous in case of edge cases
   def get_years

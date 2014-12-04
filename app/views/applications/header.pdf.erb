@@ -1,0 +1,37 @@
+<%- model_class = Application -%>
+<html>
+<head>
+<meta charset='utf-8' />
+<%= wicked_pdf_stylesheet_link_tag "application" -%>
+<script>
+  function number_pages() {
+    var vars={};
+    var x=document.location.search.substring(1).split('&');
+    for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = unescape(z[1]);}
+    var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
+    for(var i in x) {
+      var y = document.getElementsByClassName(x[i]);
+      for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+    }
+  }
+</script>
+</head>
+
+<body onload="number_pages()" class="pdf-header">
+
+<div class="container">
+<div class="row">
+
+<div class="col-xs-8">
+<strong><%= model_class.human_attribute_name(@application.category) %> Application</strong><br>
+Generated on <%= Time.now.strftime("%b %e, %Y (%a) at %I:%M:%S %P") %>
+</div>
+<div class="col-xs-4 text-right">
+<span class="page"></span> of <span class="topage"></span>
+</div>
+
+</div>
+</div>
+
+</body>
+</html>

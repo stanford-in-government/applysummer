@@ -4,8 +4,12 @@
 <div class="page-header">
   <h1>Your <%= model_class.human_attribute_name(@category) %> Application</h1>
   <p>There are five steps to completing your application. When all the steps below are showing <span class="label label-success">Completed</span> then you have completed your application process.</p>
-</div>
 
+  <p><%= link_to application_path(@application, format: :pdf), class: "btn btn-default#{@profile_exists ? '' : ' disabled'}", data: { toggle: 'tooltip', placement: 'right' }, title: 'Snapshot of your application' do %>
+    <i class="fa fa-fw fa-download" aria-hidden="true"></i> Download PDF
+  <% end %>
+  </p>
+</div>
 
 <!--
 Profile
@@ -33,6 +37,9 @@ Profile
         <% end %>
 
       </div>
+      <% unless @profile_exists %>
+        <div class="panel-footer">Completing this step will also allow you to download a PDF copy of your application for your own reference.</div>
+      <% end %>
     </div>
   </div>
 </div>

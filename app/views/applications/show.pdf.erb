@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8' />
+    <%= wicked_pdf_stylesheet_link_tag "application" -%>
+
+    <script>
+      function number_pages() {
+        var vars={};
+        var x=document.location.search.substring(1).split('&');
+        for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = unescape(z[1]);}
+        var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
+        for(var i in x) {
+          var y = document.getElementsByClassName(x[i]);
+          for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+        }
+      }
+    </script>
+  </head>
+  <body onload="number_pages()" class="pdf">
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-xs-12">
+        <h1 class="pdf-heading"><%= @user.name %><small><%= print_status(@application) %></small></h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="panel panel-default">
+          <div class="panel-heading"><h2 class="panel-title">Personal</h2></div>
+          <table class="table">
+            <tr>
+              <td class="row-name"><%= User.human_attribute_name(:email) %></td>
+              <td><%= @user.email %></td>
+            </tr>
+            <tr>
+              <td class="row-name"><%= Profile.human_attribute_name(:first_name) %></td>
+              <td><%= @profile.first_name %></td>
+            </tr>
+            <tr>
+              <td class="row-name"><%= Profile.human_attribute_name(:middle_name) %></td>
+              <td><%= @profile.middle_name %></td>
+            </tr>
+            <tr>
+              <td class="row-name"><%= Profile.human_attribute_name(:last_name) %></td>
+              <td><%= @profile.last_name %></td>
+            </tr>
+            <tr>
+              <td class="row-name"><%= Profile.human_attribute_name(:local_address) %></td>
+              <td><%= simple_format(@profile.local_address) %></td>
+            </tr>
+            <tr>
+              <td class="row-name"><%= Profile.human_attribute_name(:perm_address) %></td>
+              <td><%= simple_format(@profile.perm_address) %></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="col-xs-6">
+        <div class="panel panel-default">
+          <div class="panel-heading"><h2 class="panel-title">Academics</h2></div>
+          <table class="table">
+            <tr>
+              <td class="row-name"><%= Profile.human_attribute_name(:class_year) %></td>
+              <td><%= @profile.class_year %></td>
+            </tr>
+            <tr>
+              <td class="row-name"><%= Profile.human_attribute_name(:majors) %></td>
+              <td><%= @profile.majors %></td>
+            </tr>
+            <tr>
+              <td class="row-name"><%= Profile.human_attribute_name(:minors) %></td>
+              <td><%= @profile.minors %></td>
+            </tr>
+            <tr>
+              <td class="row-name"><%= Profile.human_attribute_name(:overall_gpa) %></td>
+              <td><%= @profile.overall_gpa %></td>
+            </tr>
+            <tr>
+              <td class="row-name"><%= Profile.human_attribute_name(:major_gpa) %></td>
+              <td><%= @profile.major_gpa %></td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading"><h2 class="panel-title">Fellowship Preferences</h2></div>
+
+            <% unless @application.choices.exists? %>
+              <div class="panel-body">
+                <p>Missing preferences</p>
+              </div>
+            <% end %>
+
+            <table class="table">
+              <% @application.choices.all.each_with_index do |choice, i| %>
+                <tr><td><%= i + 1 %></td><td><%= choice.fellowship.name %></td></tr>
+              <% end %>
+            </table>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="panel panel-default">
+          <div class="panel-heading"><h2 class="panel-title">Personal Statement</h2></div>
+          <div class="panel-body">
+            <%= @application.pers_statement.blank? ? 'Not filled' : simple_format(@application.pers_statement) %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="panel panel-default">
+          <div class="panel-heading"><h2 class="panel-title">Relevant Coursework</h2></div>
+          <div class="panel-body">
+            <%= @application.rel_coursework.blank? ? 'Not filled' : simple_format(@application.rel_coursework) %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <% @application.choices.all.each_with_index do |choice, i|
+          if i < @num_applied %>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div class="pdf-rank pull-left">Preference <%= i + 1 %></div>
+              <h2 class="panel-title"><%= choice.fellowship.name %></h2>
+            </div>
+            <ul class="list-group">
+              <li class="list-group-item"><%= choice.statement.blank? ? 'Statement missing' : simple_format(choice.statement) %></li>
+              <li class="list-group-item"><%= choice.budget.blank? ? 'Budget missing' : simple_format(choice.budget) %></li>
+            </ul>
+          </div>
+        <% end
+        end %>
+
+      </div>
+    </div>
+
+
+  </div>
+
+  </body>
+</html>

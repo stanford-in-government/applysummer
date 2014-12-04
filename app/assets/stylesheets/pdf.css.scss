@@ -1,0 +1,27 @@
+.pdf {
+  padding: 0;
+  margin: 0;
+  // margin-top: 4mm;
+  table .row-name {
+    font-weight: bold;
+    color: #bbb;
+  }
+  .panel-heading {
+    page-break-inside: avoid;
+  }
+}
+
+.pdf-header {
+  color: #666;
+}
+
+.pdf-heading {
+  margin-bottom: 20px;
+  small {
+    margin-left: 40px;
+  }
+}
+
+.pdf-rank {
+  margin-right: 20px;
+}

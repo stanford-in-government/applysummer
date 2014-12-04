@@ -19,7 +19,7 @@
       <li>How could the fellowship enhance your academic and/or career plans?</li>
     </ul>
   </div>
-      <%= f.input :pers_statement, label: false, as: :text, input_html: { rows: 20 }%>
+      <%= f.input :pers_statement, label: false, input_html: { rows: 20 }%>
     <%= error_span(@application[:pers_statement]) %>
 </div>
 
@@ -30,7 +30,7 @@
   <div class="panel-body">
     <p>In no more than 125 words, please describe the coursework you have completed or are currently taking that you believe is relevant to any potential SIG fellowship.</p>
   </div>
-  <%= f.input :rel_coursework, label: false, as: :text, input_html: { rows: 5 }%>
+  <%= f.input :rel_coursework, label: false, input_html: { rows: 5 }%>
   <%= error_span(@application[:rel_coursework]) %>
 </div>
 

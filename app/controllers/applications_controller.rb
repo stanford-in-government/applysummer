@@ -1,5 +1,7 @@
 class ApplicationsController < ApplicationController
   before_action :set_application, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  load_and_authorize_resource
 
   respond_to :html
 
@@ -9,7 +11,26 @@ class ApplicationsController < ApplicationController
   end
 
   def show
-    respond_with(@application)
+    respond_with(@application) do |format|
+      format.pdf do
+        @user = @application.user
+        @profile = @user.profile
+        @num_applied = Fellowship::Application.config.fellowship.num_applied
+        render pdf: "#{@user.sunetid} (#{@user.name}) - #{@application.status}",
+               page_size: 'Letter',
+               margin: {
+                top: 20
+               },
+               header: {
+                spacing: 2,
+                html: {
+                  template: 'applications/header.pdf.erb'
+                }
+               },
+               show_as_html: params[:debug].present?
+
+      end
+    end
   end
 
   def new
