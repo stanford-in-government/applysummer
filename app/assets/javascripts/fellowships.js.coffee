@@ -104,13 +104,15 @@ window.initRanker = (options) ->
     html = if choices.length > 0
       choices.reduce ((html, c, i) ->
         cls = if i >= options.max_applied then 'hidden' else ''
+        upCls = if i == 0 then ' disabled' else ''
+        downCls = if i == choices.length - 1 then ' disabled' else ''
         f = fsMap[c.id]
         html + "
         <div class=\"panel panel-default\">
           <div class=\"panel-heading clearfix\">
             <div class=\"pull-right btn-group\" data-id=\"#{f.id}\">
-              <button data-action=\"up\" class=\"btn btn-sm btn-default\"><i class=\"fa fa-chevron-up\"></i></button>
-              <button data-action=\"down\" class=\"btn btn-sm btn-default\"><i class=\"fa fa-chevron-down\"></i></button>
+              <button data-action=\"up\" class=\"btn btn-sm btn-default #{upCls}\"><i class=\"fa fa-chevron-up\"></i></button>
+              <button data-action=\"down\" class=\"btn btn-sm btn-default #{downCls}\"><i class=\"fa fa-chevron-down\"></i></button>
               <button data-action=\"remove\" class=\"btn btn-sm btn-default\"><i class=\"fa fa-times\"></i></button>
             </div>
 
@@ -168,16 +170,18 @@ window.initRanker = (options) ->
       $(this).animate({rows: 1}, 200)
 
   saveChoices = (elem, success) ->
-    elem.addClass 'disabled'
-    $('i', elem).addClass('fa-spinner')
+    $('[data-action=save], [data-action=submit]').addClass('disabled')
+    $('i', elem).removeClass('hidden')
+    $('span', elem).addClass('hidden')
     jqxhr = $.post(options.save_url, {type: elem.data('action'), json: JSON.stringify(choices)})
     jqxhr.fail ->
       showAlert('danger', jqxhr.responseText)
     jqxhr.done ->
       success?()
     jqxhr.always ->
-      elem.removeClass 'disabled'
-      $('i', elem).removeClass('fa-spinner')
+      $('[data-action=save], [data-action=submit]').removeClass('disabled')
+      $('span', elem).removeClass('hidden')
+      $('i', elem).addClass('hidden')
 
 
   $('[data-action=save]').click ->
