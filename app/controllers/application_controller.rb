@@ -9,6 +9,14 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, alert: exception.message
   end
 
+  # Hack to fix CanCan for Rails 4 strong parameters
+  # https://github.com/ryanb/cancan/issues/835
+  before_filter do
+    resource = controller_name.singularize.to_sym
+    method = "#{resource}_params"
+    params[resource] &&= send(method) if respond_to?(method, true)
+  end
+
   private
     def reset_return_to
       if session[:return_to] == request.original_url
