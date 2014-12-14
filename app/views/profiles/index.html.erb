@@ -7,6 +7,8 @@
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:user_id) %></th>
+      <th><%= model_class.human_attribute_name(:sunetid) %></th>
+      <th><%= model_class.human_attribute_name(:suid) %></th>
       <th><%= model_class.human_attribute_name(:first_name) %></th>
       <th><%= model_class.human_attribute_name(:middle_name) %></th>
       <th><%= model_class.human_attribute_name(:last_name) %></th>
@@ -17,7 +19,6 @@
       <th><%= model_class.human_attribute_name(:perm_street) %></th>
       <th><%= model_class.human_attribute_name(:perm_city) %></th>
       <th><%= model_class.human_attribute_name(:perm_state) %></th>
-      <th><%= model_class.human_attribute_name(:perm_country) %></th>
       <th><%= model_class.human_attribute_name(:perm_postal) %></th>
       <th><%= model_class.human_attribute_name(:majors) %></th>
       <th><%= model_class.human_attribute_name(:minors) %></th>
@@ -33,6 +34,8 @@
       <tr>
         <td><%= link_to profile.id, profile_path(profile) %></td>
         <td><%= profile.user_id %></td>
+        <td><%= profile.sunetid %></td>
+        <td><%= profile.suid %></td>
         <td><%= profile.first_name %></td>
         <td><%= profile.middle_name %></td>
         <td><%= profile.last_name %></td>
@@ -43,7 +46,6 @@
         <td><%= profile.perm_street %></td>
         <td><%= profile.perm_city %></td>
         <td><%= profile.perm_state %></td>
-        <td><%= profile.perm_country %></td>
         <td><%= profile.perm_postal %></td>
         <td><%= profile.majors %></td>
         <td><%= profile.minors %></td>

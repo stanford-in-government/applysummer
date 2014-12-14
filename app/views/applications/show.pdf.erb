@@ -62,8 +62,16 @@
 
       <div class="col-xs-6">
         <div class="panel panel-default">
-          <div class="panel-heading"><h2 class="panel-title">Academics</h2></div>
+          <div class="panel-heading"><h2 class="panel-title">Stanford</h2></div>
           <table class="table">
+            <tr>
+              <td class="row-name"><%= Profile.human_attribute_name(:sunetid) %></td>
+              <td><%= @profile.sunetid %></td>
+            </tr>
+            <tr>
+              <td class="row-name"><%= Profile.human_attribute_name(:suid) %></td>
+              <td><%= @profile.suid %></td>
+            </tr>
             <tr>
               <td class="row-name"><%= Profile.human_attribute_name(:class_year) %></td>
               <td><%= @profile.class_year %></td>

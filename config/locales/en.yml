@@ -38,3 +38,5 @@ en:
         perm_address: Permanent address
         major_gpa: Major GPA
         overall_gpa: Overall GPA
+        sunetid: SUNet ID
+        suid: 'SUID #'

@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   enum role: ROLES
 
   def sunetid
-    email.sub '@stanford.edu', ''
+    has_profile? ? profile.sunetid : ''
   end
 
   def has_profile?

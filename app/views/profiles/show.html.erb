@@ -38,6 +38,10 @@
   <dd><%= @profile.overall_gpa %></dd>
   <dt><strong><%= model_class.human_attribute_name(:major_gpa) %>:</strong></dt>
   <dd><%= @profile.major_gpa %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:sunetid) %>:</strong></dt>
+  <dd><%= @profile.sunetid %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:suid) %>:</strong></dt>
+  <dd><%= @profile.suid %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),

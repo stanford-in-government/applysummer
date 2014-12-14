@@ -1,4 +1,4 @@
-<%= simple_form_for @profile, :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for @profile do |f| %>
   <%= f.input :user_id %>
   <%= error_span(@profile[:user_id]) %>
   <%= f.input :first_name %>
@@ -21,6 +21,8 @@
   <%= error_span(@profile[:perm_city]) %>
   <%= f.input :perm_state %>
   <%= error_span(@profile[:perm_state]) %>
+  <%= f.input :perm_country %>
+  <%= error_span(@profile[:perm_country]) %>
   <%= f.input :perm_postal %>
   <%= error_span(@profile[:perm_postal]) %>
   <%= f.input :majors %>
@@ -33,6 +35,10 @@
   <%= error_span(@profile[:overall_gpa]) %>
   <%= f.input :major_gpa %>
   <%= error_span(@profile[:major_gpa]) %>
+  <%= f.input :sunetid %>
+  <%= error_span(@profile[:sunetid]) %>
+  <%= f.input :suid %>
+  <%= error_span(@profile[:suid]) %>
 
   <%= f.button :submit, :class => 'btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

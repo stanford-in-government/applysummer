@@ -23,7 +23,7 @@
       <%= error_span(@profile[:first_name]) %>
       </div>
       <div class="col-md-4">
-      <%= f.input :middle_name, label: 'middle'%>
+      <%= f.input :middle_name, label: 'middle' %>
       <%= error_span(@profile[:middle_name]) %>
       </div>
       <div class="col-md-4">
@@ -33,6 +33,25 @@
     </div>
   </div>
 </div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Identification</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-4">
+      <%= f.input :sunetid, placeholder: 'nobody', input_html: { data: { toggle: 'tooltip', placement: 'bottom' }, title: 'Your @stanford.edu login' } %>
+      <%= error_span(@profile[:sunetid]) %>
+      </div>
+      <div class="col-md-4">
+      <%= f.input :suid, placeholder: '05574102' %>
+      <%= error_span(@profile[:suid]) %>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <div class="panel panel-default">
   <div class="panel-heading">
