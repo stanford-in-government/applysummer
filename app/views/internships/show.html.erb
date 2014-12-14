@@ -1,0 +1,59 @@
+<%- model_class = Internship -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:application_id) %>:</strong></dt>
+  <dd><%= @internship.application_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @internship.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:city) %>:</strong></dt>
+  <dd><%= @internship.city %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:country) %>:</strong></dt>
+  <dd><%= @internship.country %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:supervisor_name) %>:</strong></dt>
+  <dd><%= @internship.supervisor_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:supervisor_title) %>:</strong></dt>
+  <dd><%= @internship.supervisor_title %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:supervisor_email) %>:</strong></dt>
+  <dd><%= @internship.supervisor_email %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:supervisor_phone) %>:</strong></dt>
+  <dd><%= @internship.supervisor_phone %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:faculty_name) %>:</strong></dt>
+  <dd><%= @internship.faculty_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:financial_aid) %>:</strong></dt>
+  <dd><%= @internship.financial_aid %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:unpaid) %>:</strong></dt>
+  <dd><%= @internship.unpaid %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:minimum_length) %>:</strong></dt>
+  <dd><%= @internship.minimum_length %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:fulltime) %>:</strong></dt>
+  <dd><%= @internship.fulltime %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:travel_warning) %>:</strong></dt>
+  <dd><%= @internship.travel_warning %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:political) %>:</strong></dt>
+  <dd><%= @internship.political %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:social_service) %>:</strong></dt>
+  <dd><%= @internship.social_service %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:category) %>:</strong></dt>
+  <dd><%= @internship.category %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:related_to) %>:</strong></dt>
+  <dd><%= @internship.related_to %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:work_scope) %>:</strong></dt>
+  <dd><%= @internship.work_scope %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:relevance) %>:</strong></dt>
+  <dd><%= @internship.relevance %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:reason) %>:</strong></dt>
+  <dd><%= @internship.reason %></dd>
+</dl>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              internships_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_internship_path(@internship), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              internship_path(@internship),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

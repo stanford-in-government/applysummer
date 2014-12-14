@@ -87,24 +87,106 @@
           </table>
         </div>
 
-        <div class="panel panel-default">
-          <div class="panel-heading"><h2 class="panel-title">Fellowship Preferences</h2></div>
+        <% if @application.fellowship? %>
+          <!-- Fellowship -->
+          <div class="panel panel-default">
+            <div class="panel-heading"><h2 class="panel-title">Fellowship Preferences</h2></div>
 
-            <% unless @application.choices.exists? %>
-              <div class="panel-body">
-                <p>Missing preferences</p>
-              </div>
-            <% end %>
-
-            <table class="table">
-              <% @application.choices.all.each_with_index do |choice, i| %>
-                <tr><td><%= i + 1 %></td><td><%= choice.fellowship.name %></td></tr>
+              <% unless @application.choices.exists? %>
+                <div class="panel-body">
+                  <p>Missing preferences</p>
+                </div>
               <% end %>
-            </table>
+
+              <table class="table">
+                <% @application.choices.all.each_with_index do |choice, i| %>
+                  <tr><td><%= i + 1 %></td><td><%= choice.fellowship.name %></td></tr>
+                <% end %>
+              </table>
+          </div>
+          <!-- Fellowship -->
+        <% end %>
+
+      </div>
+    </div>
+
+    <% if @application.stipend? %>
+    <!-- Stipend -->
+
+    <div class="row">
+
+      <div class="col-xs-6">
+        <div class="panel panel-default">
+          <div class="panel-heading"><h2 class="panel-title">Internship Details</h2></div>
+          
+            <% if @internship.nil? %>
+              <div class="panel-body">Not filled</div>
+            <% else %>
+              <table class="table">
+                <tr>
+                  <td class="row-name"><%= Internship.human_attribute_name(:name) %></td>
+                  <td><%= @internship.name %></td>
+                </tr>
+                <tr>
+                  <td class="row-name"><%= Internship.human_attribute_name(:location) %></td>
+                  <td><%= simple_format @internship.location %></td>
+                </tr>
+                <tr>
+                  <td class="row-name"><%= Internship.human_attribute_name(:supervisor) %></td>
+                  <td><%= simple_format @internship.supervisor %></td>
+                </tr>
+                <tr>
+                  <td class="row-name"><%= Internship.human_attribute_name(:category) %></td>
+                  <td><%= simple_format @internship.category %></td>
+                </tr>
+                <tr>
+                  <td class="row-name"><%= Internship.human_attribute_name(:related_to) %></td>
+                  <td><%= simple_format @internship.related_to %></td>
+                </tr>
+              </table>
+            <% end %>
+        </div>
+      </div>
+
+      <div class="col-xs-6">
+        <div class="panel panel-default">
+          <div class="panel-heading"><h2 class="panel-title">Internship Checklist</h2></div>
+          
+            <% if @internship.nil? %>
+              <div class="panel-body">Not filled</div>
+            <% else %>
+              <table class="table">
+                <% Internship::CHECK_LIST_LABELS.each do |key, value| %>
+                  <tr>
+                    <td style="font-size: 1.2em;"><%= @internship[key] ? "☑" : '☐' %></td>
+                    <td><small><%= strip_parenthesis_hints value %></small></td>
+                  </tr>
+                <% end %>
+              </table>
+            <% end %>
+        </div>
+      </div>
+
+    </div>
+    
+    <div class="page-break"></div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="panel panel-default">
+          <div class="panel-heading"><h2 class="panel-title">Short Answers</h2></div>
+          <div class="panel-body">
+            <% Internship::SHORT_ANSWER_QUESTIONS.each do |key, value| %>
+            <p class="row-name"><%= strip_parenthesis_hints value %></p>
+            <%= simple_format @internship[key] %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
 
+    <!-- Stipend -->
+    <% end %>
 
     <div class="row">
       <div class="col-xs-12">
@@ -128,6 +210,8 @@
       </div>
     </div>
 
+    <% if @application.fellowship? %>
+    <!-- Fellowship -->
     <div class="row">
       <div class="col-xs-12">
         <% @application.choices.all.each_with_index do |choice, i|
@@ -147,7 +231,8 @@
 
       </div>
     </div>
-
+    <!-- Fellowship -->
+    <% end %>
 
   </div>
 

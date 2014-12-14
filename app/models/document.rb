@@ -1,6 +1,6 @@
 class Document < ActiveRecord::Base
   belongs_to :user
-  CATEGORIES = [ :other, :transcript, :resume]
+  CATEGORIES = [ :other, :transcript, :resume, :insurance]
   enum category: CATEGORIES
 
   has_attached_file :file

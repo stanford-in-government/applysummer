@@ -27,5 +27,8 @@ module Fellowship
 
     # Maximum number of fellowships the applicant is allowed to submit a detailed response for
     config.fellowship.num_applied = 3
+
+    # Only allow one type of active application at a time
+    config.fellowship.restrict_single_application = false
   end
 end

@@ -31,6 +31,10 @@ class User < ActiveRecord::Base
     documents.where(category: Document.categories[:transcript]).count > 0
   end
 
+  def has_insurance?
+    documents.where(category: Document.categories[:insurance]).count > 0
+  end
+
   def has_completed_applications?
     applications.where(status: Application.statuses[:completed]).count > 0
   end

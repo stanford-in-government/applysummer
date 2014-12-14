@@ -37,7 +37,7 @@ footer {
   background-image: image-url('lincoln.jpg');
   background-size: cover;
   background-position: center;
-  border-radius: 10px;
+  border-radiurs: 10px;
   width: 100%;
   min-height: 600px;
 }
@@ -91,4 +91,8 @@ abbr[title], abbr[data-original-title] {
 .tab-content {
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.jquery-validation-error {
+  color: #a94442;
 }

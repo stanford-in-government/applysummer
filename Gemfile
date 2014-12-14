@@ -7,6 +7,7 @@ gem 'twitter-bootstrap-rails', '~> 3.2'
 gem 'simple_form', '~> 3.1'
 gem 'countries'
 gem 'country_select'
+gem 'jquery-validation-rails'
 
 # User authentication
 gem 'devise', '~> 3.4.1'

@@ -1,0 +1,48 @@
+<%= simple_form_for @internship, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :application_id %>
+  <%= error_span(@internship[:application_id]) %>
+  <%= f.input :name %>
+  <%= error_span(@internship[:name]) %>
+  <%= f.input :city %>
+  <%= error_span(@internship[:city]) %>
+  <%= f.input :country %>
+  <%= error_span(@internship[:country]) %>
+  <%= f.input :supervisor_name %>
+  <%= error_span(@internship[:supervisor_name]) %>
+  <%= f.input :supervisor_title %>
+  <%= error_span(@internship[:supervisor_title]) %>
+  <%= f.input :supervisor_email %>
+  <%= error_span(@internship[:supervisor_email]) %>
+  <%= f.input :supervisor_phone %>
+  <%= error_span(@internship[:supervisor_phone]) %>
+  <%= f.input :faculty_name %>
+  <%= error_span(@internship[:faculty_name]) %>
+  <%= f.input :financial_aid %>
+  <%= error_span(@internship[:financial_aid]) %>
+  <%= f.input :unpaid %>
+  <%= error_span(@internship[:unpaid]) %>
+  <%= f.input :minimum_length %>
+  <%= error_span(@internship[:minimum_length]) %>
+  <%= f.input :fulltime %>
+  <%= error_span(@internship[:fulltime]) %>
+  <%= f.input :travel_warning %>
+  <%= error_span(@internship[:travel_warning]) %>
+  <%= f.input :political %>
+  <%= error_span(@internship[:political]) %>
+  <%= f.input :social_service %>
+  <%= error_span(@internship[:social_service]) %>
+  <%= f.input :category %>
+  <%= error_span(@internship[:category]) %>
+  <%= f.input :related_to %>
+  <%= error_span(@internship[:related_to]) %>
+  <%= f.input :work_scope %>
+  <%= error_span(@internship[:work_scope]) %>
+  <%= f.input :relevance %>
+  <%= error_span(@internship[:relevance]) %>
+  <%= f.input :reason %>
+  <%= error_span(@internship[:reason]) %>
+
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                internships_path, :class => 'btn btn-default' %>
+<% end %>

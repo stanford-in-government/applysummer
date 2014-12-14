@@ -1,0 +1,141 @@
+<%- model_class = Application -%>
+<% title "#{model_class.human_attribute_name(:stipend)} - Internship" %>
+
+<div class="page-header">
+  <h1>Internship</h1>
+  <p>Please answer the following questions about the internship that the stipend will be used on.</p>
+</div>
+
+<%= simple_form_for(@internship, url: stipends_questions_path, html: { method: :post }) do |f| %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Internship Details</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-offset-2 col-md-8">
+      <%= f.input :name, label: 'name', placeholder: 'Department of State, East Asian and Pacific Affairs'%>
+      <%= error_span(@internship[:name]) %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-offset-2 col-md-4">
+      <%= f.input :city, label: 'city', placeholder: 'Washington, DC' %>
+      <%= error_span(@internship[:city]) %>
+      </div>
+      <div class="col-md-4">
+      <%= f.input :country, label: 'country', priority: [ "United States" ] %>
+      <%= error_span(@internship[:country]) %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-offset-2 col-md-8">
+        <%= f.input :faculty_name, label: 'faculty name', placeholder: 'Dr. Albert Einstein' %>
+        <p class="help-block">Name of faculty member in the broader field of my internship with whom I could meet prior to my internship for advice on my learning goals if I am awarded the stipend.</p>
+        <%= error_span(@internship[:faculty_name]) %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Supervisor</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-6">
+      <%= f.input :supervisor_name, label: 'full name', placeholder: 'John Smith'%>
+      <%= error_span(@internship[:supervisor_name]) %>
+      </div>
+      <div class="col-md-6">
+      <%= f.input :supervisor_title, label: 'title', placeholder: 'Deputy Section Chief'%>
+      <%= error_span(@internship[:supervisor_title]) %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+      <%= f.input :supervisor_email, as: :email, label: 'email', placeholder: 'smith@state.gov' %>
+      <%= error_span(@internship[:supervisor_email]) %>
+      </div>
+      <div class="col-md-6">
+      <%= f.input :supervisor_phone, as: :tel, label: 'phone', placeholder: '+1-202-555-0105' %>
+      <%= error_span(@internship[:supervisor_phone]) %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Requirements Check List</h3>
+
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-offset-2 col-md-8">
+      <p class="help-block">Check each box if the associated statement is true.</p>
+      <% Internship::CHECK_LIST_LABELS.each do |key, value| %>
+        <%= f.input key, label: value %>
+        <%= error_span(@internship[key]) %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Internship Type</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-offset-2 col-md-8">
+        <p>Internship is in at least one of the following bodies. Please select one.</p>
+        <%= f.input :category, as: :radio_buttons, label: false, collection: Internship::CATEGORIES %>
+        <%= error_span(@internship[:category]) %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-offset-2 col-md-8">
+        <p>Internship work is directly related to at least one of the following. Please select one.</p>
+        <%= f.input :related_to, as: :radio_buttons, label: false, collection: Internship::RELATED_TO %>
+        <%= error_span(@internship[:related_to]) %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Short Answer Questions</h3>
+  </div>
+  <div class="panel-body">
+    <p>Please answer each of the questions in no more than <strong>100 words</strong>.</p>
+
+    <% Internship::SHORT_ANSWER_QUESTIONS.each do |key, value| %>
+      <div class="row">
+        <div class="col-md-12">
+          <p><%= value %></p>
+          <%= f.input key, label: false, input_html: { data: { behavior: :'auto-expand' }, rows: 4 } %>
+          <%= error_span(@internship[key]) %>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+</div>
+
+<div class="row">
+  <%= f.button :submit, 'Save', class: 'btn-primary btn btn-lg col-md-2 col-md-offset-5' %>  
+  <% if @return_to %>
+    <%= link_to 'Back', @return_to, class: 'btn-default btn btn-lg col-md-2 col-md-offset-2' %>
+  <% end %>
+</div>
+
+<% end %>
