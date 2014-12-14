@@ -13,44 +13,70 @@ class MainController < ApplicationController
 
   def apply
     @categories = Application::CATEGORIES
-    application = current_user.applications.where("status <> ?", Application.statuses[:archived]).take
-    if application
-      redirect_to apply_to_path(application.category)
-    end
-  end
-
-  def apply_to
-    @num_applied = Fellowship::Application.config.fellowship.num_applied
-    @profile_exists = current_user.has_profile?
-    @resume_exists = current_user.has_resume?
-    @transcript_exists = current_user.has_transcript?
-    @personal_statement_exists = @application.has_personal_statement?
-    @relevant_coursework_exists = @application.has_relevant_coursework?
-    @ranking_exists = @application.choices_filled?
-    @ranking_submitted = @application.completed?
-    @rec_exists = @application.has_recommendations?
-
-    render template: "#{@category.to_s.pluralize}/apply_to"
-  end
-
-  def statement
-    if params.has_key?(:application)
-      if @application.update(application_params)
-        redirect_to apply_to_path(@category), notice: "Responses successfully saved."
+    if Fellowship::Application.config.fellowship.restrict_single_application
+      application = current_user.applications.where("status <> ?", Application.statuses[:archived]).take
+      if application
+        redirect_to apply_to_path(application.category)
       end
     end
   end
 
+  def apply_to
+    # General
+    @profile_exists = current_user.has_profile?
+    @personal_statement_exists = @application.has_personal_statement?
+    @relevant_coursework_exists = @application.has_relevant_coursework?
+    @rec_exists = @application.has_recommendations?
+    @completed = @application.completed?
+
+    # Fellowship
+    @num_applied = Fellowship::Application.config.fellowship.num_applied
+    @resume_exists = current_user.has_resume?
+    @transcript_exists = current_user.has_transcript?
+    @ranking_exists = @application.choices_filled?
+    @ranking_submitted = @application.completed?
+
+    # Stipend
+    @insurance_exists = current_user.has_insurance?
+    @internship_exists = !@application.internship.nil?
+    if @category.to_sym == :stipend && @insurance_exists && @internship_exists && @profile_exists && @personal_statement_exists && @relevant_coursework_exists
+      @application.completed!
+      @application.save
+      @completed = true
+    end
+
+    # Always render category-specific application checklist
+    render template: "#{@category.to_s.pluralize}/apply_to"
+  end
+
+  def statement
+    if params.has_key?(:application) &&  @application.update(application_params)
+      redirect_to apply_to_path(@category), notice: "Responses successfully saved."
+      return
+    end
+
+    # Always render category-specific statement page
+    render template: "#{@category.to_s.pluralize}/statement"
+  end
+
   def rec
-    logger.debug params[:rec_code]
     @application = Application.where(rec_code: params[:rec_code]).take
     if @application.nil?
       redirect_to root_path, flash: { error: 'Invalid recommendation code.' }
+      return
     end
+
     @rec = Recommendation.new
     @rec.application = @application
     if params.has_key?(:recommendation) && @rec.update(recommendation_params)
       redirect_to root_path, notice: 'Recommendation received.'
+      return
+    end
+
+    # Renders category-specific recommendation form if it exists
+    template_name = "#{@application.category.to_s.pluralize}/rec"
+    if template_exists?(template_name)
+      render template: template_name
     end
   end
 

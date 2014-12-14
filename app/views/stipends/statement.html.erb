@@ -1,0 +1,44 @@
+<%- model_class = Application -%>
+<% title "#{model_class.human_attribute_name(@category)} - Short Essay" %>
+
+<div class="page-header">
+    <h1>Short Essay</h1>
+</div>
+
+<%= simple_form_for(@application, url: statement_path, html: { method: :post }) do |f| %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Essay Prompt</h3>
+  </div>
+  <div class="panel-body">
+    <p>In no more than <strong>300 words</strong>, please elaborate on your reasons for choosing the summer internship for which you wish to receive a stipend. Your response should address the following questions:</p>
+    <ul>
+      <li>Why are you interested in policy in general or in this specific aspect of policy?</li>
+      <li>How does the internship fit with your education goals?</li>
+      <li>Do you have any previous experience/coursework in the field you are connecting to public policy through your internship?</li>
+    </ul>
+  </div>
+      <%= f.input :pers_statement, label: false, input_html: { rows: 20 }%>
+    <%= error_span(@application[:pers_statement]) %>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Relevant Coursework and Previous Fellowship Awards</h3>
+  </div>
+  <div class="panel-body">
+    <p>Please list any coursework you have completed or are currently taking that is relevant to public policy. In addition, please list all previous fellowship awards from Haas Center, Stanford in Government or other University departments.</p>
+  </div>
+  <%= f.input :rel_coursework, label: false, input_html: { rows: 10 }%>
+  <%= error_span(@application[:rel_coursework]) %>
+</div>
+
+<div class="row">
+  <%= f.button :submit, 'Save', :class => 'btn-primary btn btn-lg col-md-2 col-md-offset-5' %>
+  <% if @return_to %>
+    <%= link_to 'Back', @return_to, class: 'btn-default btn btn-lg col-md-2 col-md-offset-2' %>
+  <% end %>
+</div>
+
+<% end %>

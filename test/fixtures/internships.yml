@@ -1,0 +1,47 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  application_id: 
+  name: MyString
+  city: MyString
+  country: MyString
+  supervisor_name: MyString
+  supervisor_title: MyString
+  supervisor_email: MyString
+  supervisor_phone: MyString
+  faculty_name: MyString
+  financial_aid: 
+  unpaid: 
+  minimum_length: 
+  fulltime: 
+  travel_warning: 
+  political: 
+  social_service: 
+  category: MyString
+  related_to: MyString
+  work_scope: MyText
+  relevance: MyText
+  reason: MyText
+
+two:
+  application_id: 
+  name: MyString
+  city: MyString
+  country: MyString
+  supervisor_name: MyString
+  supervisor_title: MyString
+  supervisor_email: MyString
+  supervisor_phone: MyString
+  faculty_name: MyString
+  financial_aid: 
+  unpaid: 
+  minimum_length: 
+  fulltime: 
+  travel_warning: 
+  political: 
+  social_service: 
+  category: MyString
+  related_to: MyString
+  work_scope: MyText
+  relevance: MyText
+  reason: MyText

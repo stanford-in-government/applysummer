@@ -1,0 +1,92 @@
+<% title "#{Application.human_attribute_name(@application.category)} - Internship Questionnaire" %>
+
+<div class="page-header">
+  <h1>Internship Questionnaire</h1>
+  <p>You are submitting an internship questionnaire for a student applying to the <%= Application.human_attribute_name(@application.category) %> program. Please answer the following short questions so that we can have a better understanding of the internship that the student is being considered for.</p>
+</div>
+
+
+<%= simple_form_for(@rec, url: rec_path(@application.rec_code), html: { class: 'rec-form', method: :post }) do |f| %>
+
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <p>First, please ensure that the student name shown belong is correct.</p>
+      <div class="student-name well"><%= @application.user.name %></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <p>Please provide general information about your organization, including its mission, when the organization was founded, and current number of staff.</p>
+
+      <div class="form-group">
+      <%= text_area_tag :recommendation_general, nil, class: 'form-control', data: { behavior: :'auto-expand' }, rows: 4, name: 'recommendation[general]' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <p>Please outline the intern's job/project description. What tasks and responsibilities do you foresee offering this student during his/her nine-week, fulltime internship?</p>
+
+      <div class="form-group">
+      <%= text_area_tag :recommendation_description, nil, class: 'form-control', data: { behavior: :'auto-expand' }, rows: 4, name: 'recommendation[description]' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <p>How are the intern's specific tasks related to public policy?</p>
+
+      <div class="form-group">
+      <%= text_area_tag :recommendation_relevance, nil, class: 'form-control', data: { behavior: :'auto-expand' }, rows: 4, name: 'recommendation[relevance]' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 col-md-offset-2">
+      <%= f.input :name, label: 'Your name', placeholder: 'John Smith'%>
+      <%= error_span(@rec[:name]) %>
+    </div>
+    <div class="col-md-4">
+      <%= f.input :email, label: 'Your email', placeholder: 'nobody@stanford.edu' %>
+      <%= error_span(@rec[:email]) %>
+    </div>
+  </div>
+
+  <%= f.input :text, as: :hidden %>
+ 
+  <div class="row">
+    <%= f.button :submit, 'Submit', class: 'btn-primary btn btn-lg col-md-2 col-md-offset-5' %>
+  </div>
+
+<% end %>
+
+<script>
+$(document).ready(function () {
+  $('#new_recommendation').validate({
+    errorClass: 'jquery-validation-error',
+    errorElement: 'span',
+    highlight: function(element, errorClass, validClass) {
+      $(element).parent().addClass('has-error');
+    },
+    unhighlight: function(element, errorClass, validClass) {
+      $(element).parent().removeClass('has-error');
+    },
+    rules: {
+      'recommendation[general]': { required: true },
+      'recommendation[description]': { required: true },
+      'recommendation[relevance]': { required: true },
+      'recommendation[name]': { required: true },
+      'recommendation[email]': { required: true, email: true }
+    }
+  });
+
+  $('#recommendation_general, #recommendation_relevance, #recommendation_description').change(function () {
+    var text = 'GENERAL\n\n' + $('#recommendation_general').val() + '\n\nDESCRIPTION\n\n' + $('#recommendation_description').val() + '\n\nRELEVANCE\n\n' + $('#recommendation_relevance').val();
+    $('#recommendation_text').val(text);
+  });
+});
+</script>

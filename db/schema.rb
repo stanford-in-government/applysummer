@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141204202602) do
+ActiveRecord::Schema.define(version: 20141214103851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,34 @@ ActiveRecord::Schema.define(version: 20141204202602) do
   end
 
   add_index "documents", ["user_id"], name: "index_documents_on_user_id", using: :btree
+
+  create_table "internships", force: true do |t|
+    t.integer  "application_id"
+    t.string   "name"
+    t.string   "city"
+    t.string   "country"
+    t.string   "supervisor_name"
+    t.string   "supervisor_title"
+    t.string   "supervisor_email"
+    t.string   "supervisor_phone"
+    t.string   "faculty_name"
+    t.boolean  "financial_aid"
+    t.boolean  "unpaid"
+    t.boolean  "minimum_length"
+    t.boolean  "fulltime"
+    t.boolean  "travel_warning"
+    t.boolean  "political"
+    t.boolean  "social_service"
+    t.string   "category"
+    t.string   "related_to"
+    t.text     "work_scope"
+    t.text     "relevance"
+    t.text     "reason"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "internships", ["application_id"], name: "index_internships_on_application_id", using: :btree
 
   create_table "organizations", force: true do |t|
     t.string   "name"
@@ -99,7 +127,7 @@ ActiveRecord::Schema.define(version: 20141204202602) do
     t.string   "email"
     t.string   "name"
     t.integer  "application_id"
-    t.string   "text"
+    t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "letter_file_name"

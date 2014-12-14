@@ -27,7 +27,8 @@ en:
         category: Type
         created_at: Uploaded
       application:
-        fellowship: SIG Fellowship
+        fellowship: Fellowship
+        stipend: Stipend
       organization:
         local_state: Local/State
         dc_national: DC/National

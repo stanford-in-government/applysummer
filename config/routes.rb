@@ -1,16 +1,16 @@
 Rails.application.routes.draw do
-  resources :recommendations
-
-  devise_for :users, controllers: {
-    confirmations: 'users/confirmations'
-  }
-
+  resources :internships
   resources :documents
   resources :applications
   resources :organizations
   resources :choices
   resources :users
   resources :profiles
+  resources :recommendations
+
+  devise_for :users, controllers: {
+    confirmations: 'users/confirmations'
+  }
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   get 'fellowships' => 'fellowships#index'
   match 'fellowships/rank' => 'fellowships#rank', as: :fellowships_rank, via: [ :get, :post ]
   post 'fellowships/rank/save' => 'fellowships#save_choices', as: :fellowships_save
+
+  get 'stipends' => 'stipends#index'
+  match 'stipends/questions' => 'stipends#questions', as: :stipends_questions, via: [ :get, :post ]
 
   get 'confirmed' => 'main#confirmed'
   get 'faq' => 'main#faq'

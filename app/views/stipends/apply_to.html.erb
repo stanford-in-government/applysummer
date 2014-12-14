@@ -66,23 +66,18 @@ Documents
 <div class="row">
   <div class="col-md-2">
     <!-- status labels -->
-    <% if @resume_exists && @transcript_exists %>
-      <%= print_status_label(:completed, 'success') %>
-    <% else %>
-      <%= @resume_exists ? print_status_label(:resume, 'success') : print_status_label(:resume, 'danger') %>
-      <%= @transcript_exists ? print_status_label(:transcript, 'success') : print_status_label(:transcript, 'danger') %>
-    <% end %>
+    <%= @insurance_exists ? print_status_label(:completed, 'success') : print_status_label(:missing, 'danger') %>
     <!-- /status labels -->
   </div>
   <div class="col-md-8">
 
-    <div class="panel panel-<%= @resume_exists && @transcript_exists ? 'success' : 'danger' %>">
+    <div class="panel panel-<%= @insurance_exists ? 'success' : 'danger' %>">
       <div class="panel-heading clearfix">
         <h3 class="panel-title">Step 2</h3>
       </div>
       <div class="panel-body">
 
-        <p>Upload supporting documents. This should at least include your resume and transcript, but you may also submit other relevant documents.</p>
+        <p>Upload your health insurance documentation.</p>
 
         <!-- button -->
         <%= link_to user_document_path(return_to: true), class: 'btn btn-lg btn-default' do %>
@@ -93,9 +88,37 @@ Documents
   </div>
 </div>
 
+<!--
+Internship
+-->
+
+<div class="row">
+  <div class="col-md-2">
+    <!-- status labels -->
+    <%= @internship_exists ? print_status_label(:completed, 'success') : print_status_label(:incomplete, 'danger') %>
+    <!-- /status labels -->
+  </div>
+  <div class="col-md-8">
+
+    <div class="panel panel-<%= @internship_exists ? 'success' : 'danger' %>">
+      <div class="panel-heading clearfix">
+        <h3 class="panel-title">Step 3</h3>
+      </div>
+      <div class="panel-body">
+
+        <p>Fill in the details for your internship.</p>
+
+        <!-- button -->
+        <%= link_to stipends_questions_path(return_to: true), class: 'btn btn-lg btn-default' do %>
+          <i class="fa fa-fw fa-check-square-o" aria-hidden="true"></i> Internship Details
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!--
-Responses
+Essay
 -->
 
 <div class="row">
@@ -104,7 +127,7 @@ Responses
     <% if @personal_statement_exists && @relevant_coursework_exists %>
       <%= print_status_label(:completed, 'success') %>
     <% else %>
-      <%= @personal_statement_exists ? print_status_label(:statement, 'success') : print_status_label(:statement, 'danger') %>
+      <%= @personal_statement_exists ? print_status_label(:essay, 'success') : print_status_label(:essay, 'danger') %>
       <%= @relevant_coursework_exists ? print_status_label(:coursework, 'success') : print_status_label(:coursework, 'danger') %>
     <% end %>
     <!-- /status labels -->
@@ -113,61 +136,35 @@ Responses
 
     <div class="panel panel-<%= @personal_statement_exists && @relevant_coursework_exists ? 'success' : 'danger' %>">
       <div class="panel-heading clearfix">
-        <h3 class="panel-title">Step 3</h3>
-      </div>
-      <div class="panel-body">
-
-        <p>Submit short responses to some shared questions that will be made available to all fellowships you apply to.</p>
-
-        <!-- button -->
-        <%= link_to statement_path(@category, return_to: true), class: 'btn btn-lg btn-default' do %>
-          <i class="fa fa-fw fa-pencil" aria-hidden="true"></i> Short Responses
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!--
-Preferences
--->
-
-<div class="row">
-  <div class="col-md-2">
-    <!-- status labels -->
-    <% if @ranking_submitted %>
-      <%= print_status_label(:completed, 'success') %>
-    <% else %>
-      <%= @ranking_exists ? print_status_label(:not_submitted, 'warning') : print_status_label(:incomplete, 'danger') %>
-    <% end %>
-    <!-- /status labels -->
-  </div>
-  <div class="col-md-8">
-
-    <div class="panel panel-<%= @ranking_submitted ? 'success' : @ranking_exists ? 'warning' : 'danger' %>">
-      <div class="panel-heading clearfix">
         <h3 class="panel-title">Step 4</h3>
       </div>
       <div class="panel-body">
 
-        <p>Rank your fellowship preferences and write a short response for each of your top <%= @num_applied %> choices.</p>
+        <p>Submit your short essay response and list your relevant coursework.</p>
 
         <!-- button -->
-        <%= link_to fellowships_rank_path(return_to: true), class: 'btn btn-lg btn-default' do %>
-          <i class="fa fa-fw fa-sort-amount-desc" aria-hidden="true"></i> Rank Fellowships
+        <% if @internship_exists %>
+          <%= link_to statement_path(@category, return_to: true), class: 'btn btn-lg btn-default' do %>
+            <i class="fa fa-fw fa-pencil" aria-hidden="true"></i> Short Essay
+          <% end %>
+        <% else %>
+          <p class="alert alert-danger">
+            <i class="fa fa-warning"></i> You need to complete Step 3 first.
+          </p>
         <% end %>
+        
       </div>
-      <% if !@ranking_submitted && @ranking_exists %>
-        <div class="panel-footer">This step will be marked as completed only after you submit (and not just save) your preferences.</div>
+
+      <% unless @completed %>
+        <div class="panel-footer">Completing this step will mark your application as submitted for review. Your supervisor can fill in the questionnaire in Step 5 at a later time.</div>
       <% end %>
+
     </div>
   </div>
 </div>
 
-
 <!--
-Recommendations
+Questionnaire
 -->
 
 <div class="row">
@@ -184,7 +181,7 @@ Recommendations
       </div>
       <div class="panel-body">
 
-        <p>Get letters of recommendation. Provide the following URL to your professors/mentors so that they can submit recommendations for you:</p>
+        <p>Your supervisor from the host organization must provide a written response to a short questionnaire regarding the internship. Provide the following URL to your supervisor so that they can submit their responses:</p>
 
         <% if @profile_exists %>
           <div class="input-group">
@@ -202,7 +199,7 @@ Recommendations
 
       </div>
       <% unless @rec_exists %>
-        <div class="panel-footer">This step will be marked as completed when you have receive at least one letter of recommendation.</div>
+        <div class="panel-footer">This step will be marked as completed when your supervisor has completed the questionnaire.</div>
       <% end %>
     </div>
   </div>

@@ -2,7 +2,7 @@
   padding: 0;
   margin: 0;
   // margin-top: 4mm;
-  table .row-name {
+  .row-name {
     font-weight: bold;
     color: #bbb;
   }
@@ -24,4 +24,10 @@
 
 .pdf-rank {
   margin-right: 20px;
+}
+
+.page-break {
+  display: block;
+  clear: both;
+  page-break-after: always;
 }

@@ -11,6 +11,7 @@ $ ->
 
   autoExpand = $('textarea[data-behavior="auto-expand"]')
   autoExpand.focus ->
+    $(this).data('original-rows', $(this).attr('rows'))
     $(this).animate({rows: 10}, 200)
   autoExpand.blur ->
-    $(this).animate({rows: 2}, 200)
+    $(this).animate({rows: $(this).data('original-rows')}, 200)

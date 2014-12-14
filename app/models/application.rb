@@ -3,11 +3,12 @@ class Application < ActiveRecord::Base
   validates :category, :user_id, presence: true
 
   belongs_to :user
-  has_many :choices, dependent: :destroy
   has_many :recommendations, dependent: :destroy
+  has_many :choices, dependent: :destroy # for fellowship applications
+  has_one :internship, dependent: :destroy # for stipend applications
 
   STATUSES = [ :incomplete, :completed, :archived ]
-  CATEGORIES = [ :fellowship ]
+  CATEGORIES = [ :fellowship, :stipend ]
 
   enum status: STATUSES
   enum category: CATEGORIES
