@@ -30,7 +30,8 @@ en:
         fellowship: Fellowship
         stipend: Stipend
       organization:
-        local_state: Local/State
+        local_county: County
+        local_state: State
         dc_national: DC/National
         international: International
       profile:

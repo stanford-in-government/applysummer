@@ -1,6 +1,9 @@
 class Organization < ActiveRecord::Base
   has_many :choices
-  CATEGORIES = [ :undefined, :local_state, :dc_national, :international ]
+
+  # Do not change the ordering or delete. Append only!
+  CATEGORIES = [ :undefined, :international, :dc_national, :local_state, :local_county ]
+
   enum category: CATEGORIES
   validates :name, :city, presence: true
 

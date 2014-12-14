@@ -7,6 +7,7 @@ class Application < ActiveRecord::Base
   has_many :choices, dependent: :destroy # for fellowship applications
   has_one :internship, dependent: :destroy # for stipend applications
 
+  # Do not change the ordering or delete. Append only!
   STATUSES = [ :incomplete, :completed, :archived ]
   CATEGORIES = [ :fellowship, :stipend ]
 
