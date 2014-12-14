@@ -176,9 +176,13 @@
         <div class="panel panel-default">
           <div class="panel-heading"><h2 class="panel-title">Short Answers</h2></div>
           <div class="panel-body">
-            <% Internship::SHORT_ANSWER_QUESTIONS.each do |key, value| %>
-            <p class="row-name"><%= strip_parenthesis_hints value %></p>
-            <%= simple_format @internship[key] %>
+            <% if @internship.nil? %>
+              Not filled
+            <% else %>
+              <% Internship::SHORT_ANSWER_QUESTIONS.each do |key, value| %>
+              <p class="row-name"><%= strip_parenthesis_hints value %></p>
+              <%= simple_format @internship[key] %>
+              <% end %>
             <% end %>
           </div>
         </div>
