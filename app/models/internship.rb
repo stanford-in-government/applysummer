@@ -3,7 +3,7 @@ class Internship < ActiveRecord::Base
 
   validates :name, :city, :country, :supervisor_name, :supervisor_title,
   :supervisor_email, :supervisor_phone, :faculty_name, :category,
-  :related_to, :work_scope, :relevance, :reason, presence: true
+  :related_to, :work_scope, :reason, presence: true
 
   SURVEY_LABELS = {
     financial_aid: 'Are you a financial aid recipient?',
@@ -21,7 +21,7 @@ class Internship < ActiveRecord::Base
 
   SHORT_ANSWER_QUESTIONS = {
     work_scope: 'Describe the specific work scope and tasks in your 9-week internship. What is the role of the office in policymaking? How will your internship relate to public policy (government functions related to policy-making, research related to public policy or government, implementation or development of policy)? (200 words max)',
-    relevance: 'Describe how your internship is, by nature, in public policy, as defined above (government functions related to policy-making, research related to public policy or government, implementation or development of policy). (100 words max)',
+    # relevance: 'Describe how your internship is, by nature, in public policy, as defined above (government functions related to policy-making, research related to public policy or government, implementation or development of policy). (100 words max)',
     reason: 'Elaborate on your reason for applying for a stipend. Would you be able to take this unpaid internship without the stipend? What are your plans in case you do not receive a stipend?',
   }
 
