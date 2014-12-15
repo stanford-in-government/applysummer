@@ -158,12 +158,18 @@
 
       <div class="col-xs-6">
         <div class="panel panel-default">
-          <div class="panel-heading"><h2 class="panel-title">Internship Checklist</h2></div>
+          <div class="panel-heading"><h2 class="panel-title">Checklist</h2></div>
           
             <% if @internship.nil? %>
               <div class="panel-body">Not filled</div>
             <% else %>
               <table class="table">
+                <% Internship::SURVEY_LABELS.each do |key, value| %>
+                  <tr>
+                    <td style="font-size: 1.2em;"><%= @internship[key] ? "☑" : '☐' %></td>
+                    <td><small><%= strip_parenthesis_hints value %></small></td>
+                  </tr>
+                <% end %>
                 <% Internship::CHECK_LIST_LABELS.each do |key, value| %>
                   <tr>
                     <td style="font-size: 1.2em;"><%= @internship[key] ? "☑" : '☐' %></td>

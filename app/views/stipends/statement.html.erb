@@ -9,6 +9,17 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
+    <h3 class="panel-title">Relevant Coursework and Previous Fellowship Awards</h3>
+  </div>
+  <div class="panel-body">
+    <p>Please list any coursework you have completed or are currently taking that is relevant to public policy. In addition, please list all previous fellowship awards from Haas Center, Stanford in Government or other University departments.</p>
+  </div>
+  <%= f.input :rel_coursework, label: false, input_html: { rows: 10 }%>
+  <%= error_span(@application[:rel_coursework]) %>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
     <h3 class="panel-title">Essay Prompt</h3>
   </div>
   <div class="panel-body">
@@ -21,17 +32,6 @@
   </div>
       <%= f.input :pers_statement, label: false, input_html: { rows: 20 }%>
     <%= error_span(@application[:pers_statement]) %>
-</div>
-
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Relevant Coursework and Previous Fellowship Awards</h3>
-  </div>
-  <div class="panel-body">
-    <p>Please list any coursework you have completed or are currently taking that is relevant to public policy. In addition, please list all previous fellowship awards from Haas Center, Stanford in Government or other University departments.</p>
-  </div>
-  <%= f.input :rel_coursework, label: false, input_html: { rows: 10 }%>
-  <%= error_span(@application[:rel_coursework]) %>
 </div>
 
 <div class="row">

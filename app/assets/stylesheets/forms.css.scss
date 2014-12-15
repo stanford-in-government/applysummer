@@ -14,9 +14,13 @@ form .panel-heading {
   background-color: inherit !important;
 }
 
-form label.control-label {
+form label.control-label:not(.radio_buttons) {
   font-weight: normal;
   font-size: 0.9em;
   color: #999;
   text-transform: uppercase;
+}
+
+form label.radio_buttons {
+  font-weight: normal;
 }

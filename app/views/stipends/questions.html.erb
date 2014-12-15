@@ -69,6 +69,22 @@
   </div>
 </div>
 
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Survey</h3>
+
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-offset-2 col-md-8">
+      <% Internship::SURVEY_LABELS.each do |key, value| %>
+        <%= f.input key, as: :radio_buttons, label: value %>
+        <%= error_span(@internship[key]) %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="panel panel-default">
   <div class="panel-heading">
@@ -116,8 +132,6 @@
     <h3 class="panel-title">Short Answer Questions</h3>
   </div>
   <div class="panel-body">
-    <p>Please answer each of the questions in no more than <strong>100 words</strong>.</p>
-
     <% Internship::SHORT_ANSWER_QUESTIONS.each do |key, value| %>
       <div class="row">
         <div class="col-md-12">

@@ -66,18 +66,24 @@ Documents
 <div class="row">
   <div class="col-md-2">
     <!-- status labels -->
-    <%= @insurance_exists ? print_status_label(:completed, 'success') : print_status_label(:missing, 'danger') %>
+    <% if @insurance_exists && @resume_exists && @transcript_exists %>
+      <%= print_status_label(:completed, 'success') %>
+    <% else %>
+      <%= @insurance_exists ? print_status_label(:insurance, 'success') : print_status_label(:insurance, 'danger') %>
+      <%= @resume_exists ? print_status_label(:resume, 'success') : print_status_label(:resume, 'danger') %>
+      <%= @transcript_exists ? print_status_label(:transcript, 'success') : print_status_label(:transcript, 'danger') %>
+    <% end %>
     <!-- /status labels -->
   </div>
   <div class="col-md-8">
 
-    <div class="panel panel-<%= @insurance_exists ? 'success' : 'danger' %>">
+    <div class="panel panel-<%= @insurance_exists && @resume_exists && @transcript_exists ? 'success' : 'danger' %>">
       <div class="panel-heading clearfix">
         <h3 class="panel-title">Step 2</h3>
       </div>
       <div class="panel-body">
 
-        <p>Upload your health insurance documentation.</p>
+        <p>Upload supporting documents. This should at least include your resume, transcript, and health insurance documentation, but you may also submit other relevant documents.</p>
 
         <!-- button -->
         <%= link_to user_document_path(return_to: true), class: 'btn btn-lg btn-default' do %>

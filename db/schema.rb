@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141214235251) do
+ActiveRecord::Schema.define(version: 20141215082224) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 20141214235251) do
     t.string   "supervisor_email"
     t.string   "supervisor_phone"
     t.string   "faculty_name"
-    t.boolean  "financial_aid"
+    t.boolean  "financial_aid",    default: false
     t.boolean  "unpaid"
     t.boolean  "minimum_length"
     t.boolean  "fulltime"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20141214235251) do
     t.text     "reason"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "at_home",          default: false
   end
 
   add_index "internships", ["application_id"], name: "index_internships_on_application_id", using: :btree
