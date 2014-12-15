@@ -16,7 +16,7 @@ class Organization < ActiveRecord::Base
 
   class << self
     def category_tuples
-      uniq.pluck(:category).sort.map do |index|
+      where(active: true).distinct.pluck(:category).sort.map do |index|
         category = CATEGORIES[index]
         [ category, human_attribute_name(category) ]
       end

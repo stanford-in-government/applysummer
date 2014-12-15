@@ -34,7 +34,7 @@ class FellowshipsController < ApplicationController
     end
 
     def get_fellowships
-      @fellowships = Organization.all.order(category: :asc, name: :asc)
+      @fellowships = Organization.where(active: true).all.order(category: :asc, name: :asc)
       @categories = Organization.category_tuples
     end
 end
