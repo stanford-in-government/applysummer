@@ -6,7 +6,7 @@
 
 <div class="page-header">
   <h1>Rank Choices</h1>
-  <p>You may rank up to <%= @num_selected %> fellowship choices and provide detailed response for the top <%= @num_applied %> choices. The order in which your choices are arranged here is your order of preference. Use the <i class="fa fa-chevron-up"></i> and <i class="fa fa-chevron-down"></i> buttons to reorder your choices.</p>
+  <p>You may rank up to <strong><%= @num_selected %> fellowship choices</strong> and provide detailed response for the top <strong><%= @num_applied %> choices</strong>. The order in which your choices are arranged here is your order of preference, with <span class="badge">1</span> being the most preferred. Use the <i class="fa fa-chevron-up"></i> and <i class="fa fa-chevron-down"></i> buttons to reorder your choices.</p>
 
   <p>Note that your preferences and write-ups will not be saved until you click on <a class="btn btn-sm btn-default" data-action="save"><i class="fa fa-spin"></i> Save </a></p>
 
@@ -23,7 +23,7 @@
 
       <div class="btn-group btn-group-top btn-group-justified" role="group">
         <a class="btn btn-default" data-action="save"><i class="hidden fa fa-spinner fa-spin"></i><span>Save</span></a>
-        <a class="btn btn-primary" data-action="submit"><i class="hidden fa fa-spinner fa-spin"></i><span>Submit</span></a>
+        <a class="btn btn-primary" data-action="submit" title="Finalize your preferences"><i class="hidden fa fa-spinner fa-spin"></i><span>Submit</span></a>
       </div>
 
       <p>Select the fellowships you wish to rank from the categories below.</p>
