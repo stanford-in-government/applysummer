@@ -1,15 +1,21 @@
-<% if user_signed_in? %>
-  <div class="signed-in">Welcome, <strong><%= current_user.email %></strong></div>
-<% end %>
+<div class="signed-in">
+  <% if user_signed_in? %>
+    Welcome, <strong><%= current_user.email %></strong>
+  <% end %>
+</div>
 
-<header class="clearfix">  
-<nav class="pull-left">
-  <%= link_to "Home", root_url, class: "btn" %>
-  <%= link_to "Fellowship", fellowships_url, class: "btn"  %>
-  <%= link_to "Stipend", stipends_url, class: "btn"  %>
-  <%= link_to "FAQ", faq_url, class: "btn"  %>
+<header class="clearfix row">
+<div class="col-md-1">
+<%= link_to 'SIG', 'https://sig.stanford.edu', class: 'brand', data: { toggle: 'tooltip', placement: 'right' }, title: 'Stanford in Government' %>
+</div>
+<nav class="col-md-8">
+  <%= link_to "Home", root_url, class: "btn btn-link" %>
+  <%= link_to "Fellowship", fellowships_url, class: "btn btn-link"  %>
+  <%= link_to "Stipend", stipends_url, class: "btn btn-link"  %>
+  <%= link_to "FAQ", faq_url, class: "btn btn-link"  %>
 </nav>
-<nav class="pull-right">
+<nav class="col-md-3">
+<div class="pull-right">
 <% if user_signed_in? %>
   <div class="btn-group">
     <%= link_to "Apply", apply_path, class: "btn btn-primary" %>
@@ -35,8 +41,9 @@
   </div>
 <% else %>
   <%= link_to "Sign Up", new_user_registration_path, class: "btn-success btn" %>
-  <%= link_to "Log In", new_user_session_path, class: "btn"  %>
+  <%= link_to "Log In", new_user_session_path, class: "btn btn-default"  %>
 <% end %>
+</div>
 </nav>
 
 </header>

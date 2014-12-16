@@ -6,6 +6,22 @@ body {
 
 header {
   margin-bottom: 30px;
+  .brand {
+    font-size:2em;
+    margin-right: 20px;
+    font-family: 'Crimson Text', serif;
+    font-weight: 700;
+    float: left;
+    color: #bbb;
+  }
+  .brand:hover {
+    text-decoration: none;
+    color: #8c181b;
+  }
+
+  .btn-link {
+    color: #888;
+  }
 }
 
 footer {
