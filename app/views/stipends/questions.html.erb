@@ -111,18 +111,65 @@
   <div class="panel-body">
     <div class="row">
       <div class="col-md-offset-2 col-md-8">
-        <p>Internship is in at least one of the following bodies. Please select one.</p>
-        <%= f.input :category, as: :radio_buttons, label: false, collection: Internship::CATEGORIES %>
-        <%= error_span(@internship[:category]) %>
+        <p>What kind of organization is the internship with? Please either select an option from the list provided or type in the text box if none of the options apply.</p>
+        
+        <div class="form-group" data-action="combo-box">
+          
+          <div class="row">
+            <div class="col-xs-9">
+              <%= f.input :category, label: false %>
+              <%= error_span(@internship[:category]) %>
+            </div>
+
+            <div class="col-xs-3">
+              <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+                  Select <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                  <% Internship::CATEGORIES.each do |value| %>
+                    <li role="presentation"><a class="combobox-menuitem" role="menuitem" tabindex="-1"><%= value %></a></li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+
+        </div>
+        
       </div>
+    </div>
     </div>
     <div class="row">
-      <div class="col-md-offset-2 col-md-8">
-        <p>Internship work is directly related to at least one of the following. Please select one.</p>
-        <%= f.input :related_to, as: :radio_buttons, label: false, collection: Internship::RELATED_TO %>
-        <%= error_span(@internship[:related_to]) %>
+      <div class="col-md-offset-2 col-md-8">      
+        <p>What kind of work is the internship related to? Please either select an option from the list provided or type in the text box if none of the options apply.</p>
+        
+        <div class="form-group" data-action="combo-box">
+          
+          <div class="row">
+            <div class="col-xs-9">
+              <%= f.input :related_to, label: false %>
+              <%= error_span(@internship[:related_to]) %>
+            </div>
+
+            <div class="col-xs-3">
+              <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+                  Select <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
+                  <% Internship::RELATED_TO.each do |value| %>
+                    <li role="presentation"><a class="combobox-menuitem" role="menuitem" tabindex="-1"><%= value %></a></li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+
+        </div>
+          
       </div>
+     
     </div>
+  </div>
   </div>
 </div>
 

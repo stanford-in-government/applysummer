@@ -32,7 +32,7 @@
 
       <div class="tab-content">
         <div class="tab-pane fade in active" id="text">
-          <%= f.input :text, label: 'Recommendation text', as: :text , placeholder: 'This person is cool.', input_html: {:'data-behavior' => :'auto-expand', rows: 2} %>
+          <%= f.input :text, label: 'Recommendation text', as: :text , placeholder: 'Your recommendation here.', input_html: {:'data-behavior' => :'auto-expand', rows: 2} %>
           <%= error_span(@rec[:text]) %>
         </div>
         <div class="tab-pane fade in" id="upload">
