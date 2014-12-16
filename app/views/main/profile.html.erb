@@ -90,22 +90,22 @@
   <div class="panel-body">
     <div class="row">
       <div class="col-md-12">      
-      <%= f.input :perm_street, label:'street address', as: :text, placeholder: '135-3 Motoyama' %>
+      <%= f.input :perm_street, label:'street address', as: :text, placeholder: '1600 Pennsylvania Ave.' %>
       <%= error_span(@profile[:perm_street]) %>
       </div>
     </div>
 
     <div class="row">
       <div class="col-md-4">
-      <%= f.input :perm_city, label: 'city', placeholder:'Kanahashi-shi'%>
+      <%= f.input :perm_city, label: 'city', placeholder:'Washington'%>
       <%= error_span(@profile[:perm_city]) %>
       </div>
       <div class="col-md-4">
-      <%= f.input :perm_state, label: 'state/province', placeholder:'Mie-ken'%>
+      <%= f.input :perm_state, label: 'state/province', placeholder:'DC'%>
       <%= error_span(@profile[:perm_state]) %>
       </div>
       <div class="col-md-4">
-      <%= f.input :perm_postal, label: 'postal code', input_html: { maxlength: 10 }, placeholder:'645-2536' %>
+      <%= f.input :perm_postal, label: 'postal code', input_html: { maxlength: 10 }, placeholder:'20500' %>
       <%= error_span(@profile[:perm_postal]) %>
       </div>
     </div>

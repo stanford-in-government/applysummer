@@ -128,12 +128,12 @@ window.initRanker = (options) ->
               
               <div class=\"form-group\">
                 <label class=\"string required control-label\">reason for interest</label>
-                <textarea data-modify=\"statement\" class=\"text required form-control\" rows=\"1\" placeholder=\"Describe why you are interested in this particular fellowship.\">#{c.statement}</textarea>
+                <textarea data-modify=\"statement\" class=\"text required form-control\" rows=\"1\" placeholder=\"Why are you interested in this particular fellowship?\">#{c.statement}</textarea>
               </div>
 
               <div class=\"form-group\">
                 <label class=\"string required control-label\">budget</label>
-                <textarea data-modify=\"budget\" class=\"text required form-control\" rows=\"1\" placeholder=\"Give an overview of the budget estimates.\">#{c.budget}</textarea>
+                <textarea data-modify=\"budget\" class=\"text required form-control\" rows=\"1\" placeholder=\"Please estimate your budget (i.e. housing, transporation, food, etc.) for this summer experience.\">#{c.budget}</textarea>
               </div>
 
             </form>

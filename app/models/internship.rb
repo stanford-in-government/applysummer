@@ -16,7 +16,7 @@ class Internship < ActiveRecord::Base
     fulltime: 'The internship is full-time (at least 35 hours weekly).',
     travel_warning: 'The US State Department has NOT issued a travel warning for the country in which the internship is located.',
     political: 'The internship is NOT with a political campaign or partisan organization.',
-    social_service: 'The Internship is NOT in direct social services (such as tutoring, medical services, recreational services, community improvement services).'
+    social_service: 'The internship is NOT in direct social services (such as tutoring, medical services, recreational services, community improvement services).'
   }
 
   SHORT_ANSWER_QUESTIONS = {
