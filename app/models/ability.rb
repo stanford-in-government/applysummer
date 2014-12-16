@@ -7,6 +7,10 @@ class Ability
       can :manage, :all
     end
 
+    if user.moderator?
+      can :manage, Organization
+    end
+
     can :destroy, Document, user_id: user.id
     can :manage, Application, user_id: user.id
 
