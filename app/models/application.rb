@@ -39,13 +39,13 @@ class Application < ActiveRecord::Base
 
   def choices_for_frontend
     ordered_choices.map do |choice|
-      { id: choice.organization_id, statement: choice.statement, budget: choice.budget }
+      { id: choice.organization_id, statement: choice.statement, budget: choice.budget, at_home: choice.at_home }
     end
   end
 
   def update_choices_from_frontend(hash)
     choices = hash.each_with_index.map do |c, i|
-      { organization_id: c['id'], statement: c['statement'], budget: c['budget'], rank: i }
+      { organization_id: c['id'], statement: c['statement'], budget: c['budget'], rank: i, at_home: c['at_home'] }
     end
     update_choices(choices)
   end

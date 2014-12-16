@@ -44,6 +44,6 @@ class ChoicesController < ApplicationController
     end
 
     def choice_params
-      params.require(:choice).permit(:rank, :statement, :organization_id, :application_id)
+      params.require(:choice).permit(:rank, :statement, :organization_id, :application_id, :at_home)
     end
 end

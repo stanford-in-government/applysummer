@@ -9,6 +9,7 @@
       <th><%= model_class.human_attribute_name(:rank) %></th>
       <th><%= model_class.human_attribute_name(:statement) %></th>
       <th><%= model_class.human_attribute_name(:budget) %></th>
+      <th><%= model_class.human_attribute_name(:at_home) %></th>
       <th><%= model_class.human_attribute_name(:organization_id) %></th>
       <th><%= model_class.human_attribute_name(:application_id) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
@@ -22,6 +23,7 @@
         <td><%= choice.rank %></td>
         <td><%= choice.statement %></td>
         <td><%= choice.budget %></td>
+        <td><%= choice.at_home %></td>
         <td><%= choice.organization_id %></td>
         <td><%= choice.application_id %></td>
         <td><%=l choice.created_at %></td>

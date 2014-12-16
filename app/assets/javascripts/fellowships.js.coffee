@@ -33,14 +33,12 @@ window.initRanker = (options) ->
     if choices.length >= options.max_selected
       showAlert('danger', 'You have already selected the maximum number of choices. Remove some before you add new ones.')
     else
-      choices.push({ id: id, statement: "", budget: ""})
+      choices.push({ id: id, statement: "", budget: "", at_home: false })
       refresh()
 
   updateChoice = (id, field, val) ->
     i = choices.map((c) -> c.id).indexOf(id)
     choices[i][field] = val
-    console.log choices[i]
-    console.log choices
 
   removeChoice = (id) ->
     choices = choices.filter (f) -> f.id != id
@@ -128,12 +126,21 @@ window.initRanker = (options) ->
               
               <div class=\"form-group\">
                 <label class=\"string required control-label\">reason for interest</label>
-                <textarea data-modify=\"statement\" class=\"text required form-control\" rows=\"1\" placeholder=\"Why are you interested in this particular fellowship?\">#{c.statement}</textarea>
+                <textarea data-modify=\"statement\" class=\"text required form-control\" rows=\"2\" placeholder=\"Why are you interested in this particular fellowship?\">#{c.statement}</textarea>
               </div>
 
               <div class=\"form-group\">
                 <label class=\"string required control-label\">budget</label>
-                <textarea data-modify=\"budget\" class=\"text required form-control\" rows=\"1\" placeholder=\"Please estimate your budget (i.e. housing, transporation, food, etc.) for this summer experience.\">#{c.budget}</textarea>
+                <textarea data-modify=\"budget\" class=\"text required form-control\" rows=\"2\" placeholder=\"Please estimate your budget (i.e. housing, transporation, food, etc.) for this summer experience.\">#{c.budget}</textarea>
+              </div>
+
+              <div class=\"form-group\">
+                <div class=\"checkbox\">
+                  <label class=\"boolean optional\">
+                    <input data-checkbox=\"at_home\" class=\"boolean optional\" type=\"checkbox\" #{if c.at_home then ' checked' else ''}>
+                    Will you be living at home for this fellowship experience?
+                  </label>
+                </div>
               </div>
 
             </form>
@@ -157,6 +164,12 @@ window.initRanker = (options) ->
       id = $(this).parent().data('id')
       moveChoiceDown(id)
 
+    $('[data-checkbox]', form).change ->
+      id = $(this).closest('form').data('id')
+      field = $(this).data('checkbox')
+      val = $(this).prop( "checked" )
+      updateChoice(id, field, val)
+
     $('[data-modify]', form).change ->
       id = $(this).closest('form').data('id')
       field = $(this).data('modify')
@@ -167,7 +180,7 @@ window.initRanker = (options) ->
       $(this).animate({rows: 10}, 200)
 
     $('textarea', form).blur ->
-      $(this).animate({rows: 1}, 200)
+      $(this).animate({rows: 2}, 200)
 
   saveChoices = (elem, success) ->
     $('[data-action=save], [data-action=submit]').addClass('disabled')
