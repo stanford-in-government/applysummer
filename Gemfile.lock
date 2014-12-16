@@ -76,6 +76,9 @@ GEM
     jquery-rails (3.1.2)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-turbolinks (2.1.0)
+      railties (>= 3.1.0)
+      turbolinks
     jquery-validation-rails (1.12.0)
       railties (>= 3.2, < 5.0)
       thor (~> 0.14)
@@ -197,6 +200,7 @@ DEPENDENCIES
   devise (~> 3.4.1)
   jbuilder (~> 2.0)
   jquery-rails
+  jquery-turbolinks
   jquery-validation-rails
   nokogiri
   paperclip (~> 4.2)
