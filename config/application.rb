@@ -23,7 +23,7 @@ module Fellowship
     config.fellowship = ActiveSupport::OrderedOptions.new
 
     # Maximum number of fellowships the applicant is allowed to rank
-    config.fellowship.num_selected = 10
+    config.fellowship.num_selected = 8
 
     # Maximum number of fellowships the applicant is allowed to submit a detailed response for
     config.fellowship.num_applied = 3
