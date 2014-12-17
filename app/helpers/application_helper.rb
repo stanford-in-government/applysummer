@@ -6,4 +6,8 @@ module ApplicationHelper
   def strip_parenthesis_hints(str)
     str.gsub /\ \(.*\)/, '' 
   end
+
+  def print_deadline(category, deadline)
+    Fellowship::Application.config.fellowship.deadlines[category][deadline].strftime '%B %e'
+  end
 end

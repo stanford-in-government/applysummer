@@ -29,17 +29,17 @@
 
 <h3>What is the timeframe for application review, interviews, offers and decisions?</h3>
 
-<p>For fellowships, applications will be reviewed and email notices of whether or not you are a finalist in the week following the submission deadline of <strong>February 6th</strong>.  Interviews will be held from mid-February through early March, with final offers and decisions by mid-March at the latest.</p>
+<p>For fellowships, applications will be reviewed and email notices of whether or not you are a finalist in the week following the submission deadline of <strong><%= print_deadline :fellowship, :application %></strong>.  Interviews will be held from mid-February through early March, with final offers and decisions by mid-March at the latest.</p>
 
-<p>For stipends, applications be reviewed after the submission deadline of <strong>Feburary 14th</strong> for the first round and <strong>April 6th</strong> for the second round.</p>
+<p>For stipends, applications be reviewed after the submission deadline of <strong><%= print_deadline :stipend, :first %></strong> for the first round and <strong><%= print_deadline :stipend, :second %></strong> for the second round.</p>
 
 <h3>How does my recommender/supervisor submit his/her letter of recommendation/questionnaire on my behalf?</h3>
 
 <p>The system will generate and display a unique URL for uploading your recommendation/questionnaire (you can get back to this page at any time by hitting the <%= link_to '"Apply"', apply_path %> link and selecting the program you are applying for).  Simply have your recommender/supervisor navigate to that URL to submit supporting materials for you.</p>
 
-<p>Fellowship recommendations should be submitted by the deadline of <strong>Feburary 10th</strong>.</p>
+<p>Fellowship recommendations should be submitted by the deadline of <strong><%= print_deadline :fellowship, :recommendation %></strong>.</p>
 
-<p>Stipend questionnaires should be submitted by the deadline of <strong>Feburary 14th</strong> for the first round and <strong>April 6th</strong> for the second round.</p>
+<p>Stipend questionnaires should be submitted by the deadline of <strong><%= print_deadline :stipend, :first %></strong> for the first round and <strong><%= print_deadline :stipend, :second %></strong> for the second round.</p>
 
 <h3>Who should I contact if I have any other questions?</h3>
 
