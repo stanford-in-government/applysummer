@@ -125,7 +125,7 @@ window.initRanker = (options) ->
             <form data-id=\"#{f.id}\" class=\"#{cls}\">
               
               <div class=\"form-group\">
-                <label class=\"string required control-label\">reason for interest</label>
+                <label class=\"string required control-label\">reason for interest (250 words max)</label>
                 <textarea data-modify=\"statement\" class=\"text required form-control\" rows=\"2\" placeholder=\"Why are you interested in this particular fellowship?\">#{c.statement}</textarea>
               </div>
 
