@@ -12,6 +12,10 @@ window.initRanker = (options) ->
     map
   ), {}
 
+  # Hide inactive fellowships that were previously ranked
+  choices = choices.filter (c) ->
+    fsMap[c.id] != undefined
+
   alerts = $(options.alerts)
   dropdown = $(options.dropdown)
   form = $(options.form)
