@@ -83,8 +83,8 @@ Rails.application.configure do
     address: 'smtp.sendgrid.net',
     port: '587',
     authentication: :plain,
-    user_name: ENV['SENDGRID_USERNAME'],
-    password: ENV['SENDGRID_PASSWORD'],
+    user_name: Rails.application.secrets.sendgrid_user_name,
+    password: Rails.application.secrets.sendgrid_password,
     domain: 'heroku.com',
     enable_starttls_auto: true
   }
@@ -95,9 +95,9 @@ Rails.application.configure do
     path: '/:class/:attachment/:id_partition/:style/:filename',
     s3_protocol: :https,
     s3_credentials: {
-      bucket: ENV['S3_BUCKET_NAME'],
-      access_key_id: ENV['AWS_ACCESS_KEY_ID'],
-      secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
+      bucket: Rails.application.secrets.aws_bucket,
+      access_key_id: Rails.application.secrets.aws_access_key_id,
+      secret_access_key: Rails.application.secrets.aws_secret_access_key
     }
   }
 end
