@@ -1,0 +1,61 @@
+<% title 'Stats' %>
+
+<div class="page-header">
+  <h1>Application Stats</h1>
+</div>
+
+<div class="row">
+  <div class="col-sm-6">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Overall</h3>
+    </div>
+    <table class="table">
+      <tr><td>Registered Applicants</td><td><%= @applicants %></td></tr>
+      <tr><td>Submitted Stipends</td><td><%= @num_completed_stipends %></td></tr>
+      <tr><td>Pending Stipends</td><td><%= @num_stipends %></td></tr>
+      <tr><td>Submitted Fellowships</td><td><%= @num_completed_fellowships %></td></tr>
+      <tr><td>Pending Fellowships</td><td><%= @num_fellowships %></td></tr>
+    </table>
+  </div>
+  </div>
+</div>
+
+<div class="row">
+<% @fellowships.each do |category, fellowships|
+  if fellowships.size == 0 then next end
+  num_incompletes = 0
+  num_completes = 0
+%>
+
+  <div class="col-md-12">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= Organization.human_attribute_name(category) %></h3>
+    </div>
+
+    <table class="table">
+      <tr><th>Name</th><th>Incomplete</th><th>Submitted</th><th>Total</th></tr>
+    <% fellowships.each do |fellowship| %>
+      <tr>
+        <td><%= fellowship.name %></td>
+        <td><%= i = @incompletes[fellowship.id] || 0 %></td>
+        <td><%= c = @completes[fellowship.id] || 0 %></td>
+        <td><%= i + c %></td>
+        <%
+          num_completes += c
+          num_incompletes += i
+        %>
+      </tr>
+    <% end %>
+    <tr class="active">
+      <td>Total</td>
+      <td><%= num_incompletes %></td>
+      <td><%= num_completes %></td>
+      <td><%= num_incompletes + num_completes %></td>
+    </tr>
+    </table>
+  </div>
+  </div>
+<% end %>
+</div>

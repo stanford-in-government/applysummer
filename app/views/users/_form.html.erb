@@ -5,6 +5,8 @@
   <%= error_span(@user[:name]) %>
   <%= f.input :role,  collection: User::ROLES %>
   <%= error_span(@user[:role]) %>
+  <%= f.input :permission,  collection: User::PERMISSIONS %>
+  <%= error_span(@user[:permission]) %>
 
   <%= f.button :submit, :class => 'btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

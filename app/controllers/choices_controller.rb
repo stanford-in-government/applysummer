@@ -6,7 +6,6 @@ class ChoicesController < ApplicationController
   respond_to :html
 
   def index
-    @choices = Choice.all
     respond_with(@choices)
   end
 

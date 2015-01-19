@@ -10,7 +10,7 @@
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:email) %></th>
       <th><%= model_class.human_attribute_name(:role) %></th>
-      <th><%= model_class.human_attribute_name(:application_submitted) %></th>
+      <th><%= model_class.human_attribute_name(:permission) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
       <th><%= model_class.human_attribute_name(:current_sign_in_ip) %></th>
       <th><%= model_class.human_attribute_name(:last_sign_in_ip) %></th>
@@ -33,7 +33,7 @@
         <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td><%= user.role %></td>
-        <td><%= user.has_completed_applications? %></td>
+        <td><%= user.permission %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_user_path(user), :class => 'btn btn-default btn-xs' %>

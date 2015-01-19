@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'main#index'
 
+  get 'admin' => 'admin#index'
+  get 'admin/stats' => 'admin#stats'
+
   get 'fellowships' => 'fellowships#index'
   match 'fellowships/rank' => 'fellowships#rank', as: :fellowships_rank, via: [ :get, :post ]
   post 'fellowships/rank/save' => 'fellowships#save_choices', as: :fellowships_save

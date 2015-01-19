@@ -13,7 +13,11 @@ class User < ActiveRecord::Base
   # Defaults to applicant
   ROLES = [ :applicant, :reader, :moderator, :admin ]
 
+  # Only applies to readers because moderators and admins have full read permissions
+  PERMISSIONS = [ :no_permission, :fellowship, :stipend, :international, :dc_national, :local_state, :local_county ]
+
   enum role: ROLES
+  enum permission: PERMISSIONS
 
   def sunetid
     has_profile? ? profile.sunetid : ''

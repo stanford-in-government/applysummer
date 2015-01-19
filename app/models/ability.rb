@@ -7,8 +7,18 @@ class Ability
       can :manage, :all
     end
 
+    fellowship_category = Organization.categories[user.permission]
+    application_category = Application.categories[user.permission]
+
     if user.moderator?
+      can :read, Application, category: application_category
       can :manage, Organization
+    end
+
+    if user.reader?
+      can :read, Application, category: application_category
+      can :read, Organization, category: fellowship_category
+      can :read, Choice, organization: { category: fellowship_category }
     end
 
     can :destroy, Document, user_id: user.id
