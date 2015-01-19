@@ -11,14 +11,18 @@ class Ability
     application_category = Application.categories[user.permission]
 
     if user.moderator?
-      can :read, Application, category: application_category
       can :manage, Organization
     end
 
-    if user.reader?
+    if user.reader? or user.moderator?
+      if user.fellowship?
+        can :read, Organization
+      else
+        can :read, Organization, category: fellowship_category
+      end
       can :read, Application, category: application_category
-      can :read, Organization, category: fellowship_category
       can :read, Choice, organization: { category: fellowship_category }
+      can :read, Choice, application: { category: application_category }
     end
 
     can :destroy, Document, user_id: user.id
