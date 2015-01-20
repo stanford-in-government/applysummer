@@ -51,11 +51,13 @@ class Application < ActiveRecord::Base
   end
 
   def update_choices(new_choices)
-    self.choices.destroy_all
-    new_choices.each do |c|
-      choice = Choice.new(c)
-      choice.application = self
-      choice.save
+    Choice.transaction do
+      self.choices.destroy_all
+      new_choices.each do |c|
+        choice = Choice.new(c)
+        choice.application = self
+        choice.save
+      end
     end
   end
 
