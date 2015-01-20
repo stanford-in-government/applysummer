@@ -26,6 +26,14 @@ class Application < ActiveRecord::Base
     recommendations.count > 0
   end
 
+  def belongs_to_category(category)
+    return true if self.category == category.to_s
+    choices.each do |choice|
+      return true if choice.organization.category == category.to_s
+    end
+    false
+  end
+
   def generate_rec_code
     self.rec_code ||= loop do
       random_token = SecureRandom.hex(10)

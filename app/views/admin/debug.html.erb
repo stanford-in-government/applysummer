@@ -1,0 +1,20 @@
+<pre>
+<% @app.each do |app|
+  print = false
+  r = []
+  app.choices.each do |choice|
+    if r.include? choice.rank
+      # choice.delete
+      print = true
+    end
+    r.push choice.rank
+  end
+  if print %>
+    <%= app.user.name %>
+    <%= app.id %>
+    <% app.choices.order('rank').each do |choice| %>
+      <%= choice.id %>  <%= choice.rank %>  <%= choice.organization.name %>  <%= choice.created_at %>
+      <% end %>
+    <% end %>
+  <% end %>
+</pre>

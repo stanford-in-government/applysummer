@@ -19,7 +19,9 @@ Rails.application.routes.draw do
   root 'main#index'
 
   get 'admin' => 'admin#index'
+  get 'admin/debug' => 'admin#debug'
   get 'admin/stats' => 'admin#stats'
+  get 'admin/fellowships(/:id)' => 'admin#fellowships', as: :fellowships_admin
 
   get 'fellowships' => 'fellowships#index'
   match 'fellowships/rank' => 'fellowships#rank', as: :fellowships_rank, via: [ :get, :post ]

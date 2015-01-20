@@ -1,0 +1,64 @@
+<% title 'Review Fellowships' %>
+
+<div class="page-header">
+  <h1>Review Fellowship Applications</h1>
+  <p>Select a fellowship from the dropdown menu to review. Submitted applications are in green.</p>
+
+  <div class="btn-group">
+    <% @fellowships.each do |category, fellowships| %>
+      <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+          <%= Organization.human_attribute_name(category) %>
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <% fellowships.each do |fellowship| %>
+            <li<%= raw(' class="active"') if @fellowship and @fellowship.id == fellowship.id %>>
+              <%= link_to fellowship.name, fellowships_admin_path(fellowship.id) %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<% unless @fellowship.nil? %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= @fellowship.name %></h3>
+  </div>
+  <table class="table">
+    <tr><th>Rank</th><th>Applicant Name</th><th>Year</th><th>Major</th><th></th></tr>
+    <% @choices.each do |choice| %>
+      <%
+        application = choice.application
+        user = application.user
+      %>
+      <tr <%= raw(' class="success"') if application.completed? %>>
+        <td><%= choice.rank + 1 %></td>
+        <td><%= link_to user.name, application_path(application) %></td>
+        <% profile = user.profile %>
+        <td><%= if profile then profile.class_year else '' end %></td>
+        <td><%= if profile then profile.majors else '' end %></td>
+        <td>
+          <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" title="Download PDFs" data-toggle="tooltip" data-placement="right">
+              <i class="fa fa-file-pdf-o"></i>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li><%= link_to 'application', application_path(application, format: :pdf) %></li>
+              <% application.recommendations.each do |rec| %>
+                <li><%= link_to 'recommendation', recommendation_path(rec, format: :pdf) %></li>
+              <% end %>
+              <% user.documents.each do |doc| %>
+                <li><%= link_to doc.category, doc.file.url %></li>
+              <% end %>
+            </ul>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+<% end %>

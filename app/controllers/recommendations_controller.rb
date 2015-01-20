@@ -6,12 +6,24 @@ class RecommendationsController < ApplicationController
   respond_to :html
 
   def index
-    @recommendations = Recommendation.all
     respond_with(@recommendations)
   end
 
   def show
-    respond_with(@recommendation)
+    respond_with(@recommendation) do |format|
+      format.pdf do
+        if @recommendation.text.blank?
+          redirect_to @recommendation.letter.url
+        else
+          @user = @recommendation.application.user
+          render pdf: "Recommendation for #{@user.sunetid} (#{@user.name})",
+                 page_size: 'Letter',
+                 margin: {
+                  top: 20
+                 }
+        end
+      end
+    end
   end
 
   def new

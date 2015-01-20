@@ -11,12 +11,13 @@ class ApplicationsController < ApplicationController
   end
 
   def show
+    @user = @application.user
+    @profile = @user.profile
+    @internship = @application.internship
+    @num_applied = Fellowship::Application.config.fellowship.num_applied
+
     respond_with(@application) do |format|
       format.pdf do
-        @user = @application.user
-        @profile = @user.profile
-        @internship = @application.internship
-        @num_applied = Fellowship::Application.config.fellowship.num_applied
         render pdf: "#{@user.sunetid} (#{@user.name}) - #{@application.status}",
                page_size: 'Letter',
                margin: {

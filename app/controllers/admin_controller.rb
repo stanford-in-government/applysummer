@@ -1,15 +1,31 @@
 class AdminController < ApplicationController
   before_action :authenticate_user!
+  before_action :get_fellowships, only: [:fellowships, :stats]
 
   def index
   end
 
-  def stats
-    @fellowships = Organization.accessible_by(current_ability, :read)
-      .where(active: true)
-      .order('category, name')
-      .group_by(&:category)
+  # For debugging duplicated choices bug
+  def debug
+    render status: :forbidden unless current_user.admin?
+    @app = Application.where(category: Application.categories[:fellowship])
+  end
 
+  def fellowships
+    id = params[:id]
+
+    unless id.blank?
+      @fellowship = Organization.accessible_by(current_ability, :read).find(id)
+    end
+
+    @choices = Choice.accessible_by(current_ability, :read)
+      .joins(:organization)
+      .where('organizations.id' => id)
+      .order(:rank)
+      .all
+  end
+
+  def stats
     @incompletes = Choice.accessible_by(current_ability, :read)
       .joins(:application)
       .where(applications: { status: Application.statuses[:incomplete] })
@@ -31,4 +47,12 @@ class AdminController < ApplicationController
     @num_fellowships = fellowships.where(status: Application.statuses[:incomplete]).count
     @num_completed_fellowships = fellowships.where(status: Application.statuses[:completed]).count
   end
+
+  private
+    def get_fellowships
+      @fellowships = Organization.accessible_by(current_ability, :read)
+        .where(active: true)
+        .order('category, name')
+        .group_by(&:category)
+    end
 end
