@@ -6,7 +6,7 @@ class ApplicationsController < ApplicationController
   respond_to :html
 
   def index
-    @applications = Application.all
+    @applications = @applications.includes(:user).order(:category, :id)
     respond_with(@applications)
   end
 

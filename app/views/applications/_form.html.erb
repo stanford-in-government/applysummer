@@ -1,11 +1,11 @@
-<%= simple_form_for @application, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :category %>
+<%= simple_form_for @application do |f| %>
+  <%= f.input :category, collection: Application::CATEGORIES, disabled: true %>
   <%= error_span(@application[:category]) %>
-  <%= f.input :status %>
+  <%= f.input :status, collection: Application::STATUSES %>
   <%= error_span(@application[:status]) %>
-  <%= f.input :rec_code %>
+  <%= f.input :rec_code, disabled: true %>
   <%= error_span(@application[:rec_code]) %>
-  <%= f.input :user_id %>
+  <%= f.input :user, disabled: true %>
   <%= error_span(@application[:user_id]) %>
 
   <%= f.button :submit, :class => 'btn-primary' %>

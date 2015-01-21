@@ -2,43 +2,46 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    can :manage, :all
     user ||= User.new # guest user (not logged in)
     if user.admin?
       can :manage, :all
     end
 
     fellowship_category = Organization.categories[user.permission]
-    application_category = Application.categories[user.permission]
-
-    if user.moderator?
-      if user.fellowship?
-        can :manage, Organization
-      end
-    end
 
     if user.reader? or user.moderator?
       if user.fellowship?
-        can :read, Application do |app|
-          app.belongs_to_category(user.permission)
-        end
         can :read, Organization
         can :read, Choice
-        can :show, Recommendation do |rec|
+        can :read, Recommendation do |rec|
           rec.application.belongs_to_category(user.permission)
         end
       else
-        can :read, Application do |app|
-          app.belongs_to_category(user.permission)
-        end
         can :read, Organization, category: fellowship_category
         can :read, Choice, organization: { category: fellowship_category }
         can :read, Recommendation do |rec|
           rec.application.belongs_to_category(user.permission)
         end
       end
-      can :read, Application, category: application_category
     end
 
+    if user.reader?
+      can :read, Application do |app|
+        app.belongs_to_category(user.permission)
+      end
+    end
+
+    if user.moderator?
+      if user.fellowship?
+        can :manage, Organization
+      end
+      can :manage, Application
+      cannot :destroy, Application
+    end
+
+    can :edit, User, id: user.id
+    can :edit, Profile, user_id: user.id
     can :destroy, Document, user_id: user.id
     can :manage, Application, user_id: user.id
 

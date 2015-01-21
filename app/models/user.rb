@@ -19,6 +19,10 @@ class User < ActiveRecord::Base
   enum role: ROLES
   enum permission: PERMISSIONS
 
+  def to_s
+    "#{name} (#{email})"
+  end
+
   def sunetid
     has_profile? ? profile.sunetid : ''
   end
