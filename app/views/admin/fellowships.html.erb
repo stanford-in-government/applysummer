@@ -60,5 +60,10 @@
       </tr>
     <% end %>
   </table>
+  <div class="panel-footer">
+    <%= link_to "mailto:?bcc=#{@emails.join(',')}", class: 'btn btn-default' do %>
+      <i class="fa fa-envelope-o"></i> Email
+    <% end %>
+  </div>
 </div>
 <% end %>

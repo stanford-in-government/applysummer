@@ -19,10 +19,15 @@ class AdminController < ApplicationController
     end
 
     @choices = Choice.accessible_by(current_ability, :read)
+      .includes(:organization, application: [:recommendations, user: [:documents, :profile]])
       .joins(:organization)
       .where('organizations.id' => id)
       .order(:rank)
       .all
+
+    @emails = @choices.map do |choice|
+      choice.application.user.email
+    end
   end
 
   def stats
