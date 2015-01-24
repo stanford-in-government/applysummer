@@ -35,7 +35,12 @@
 </div>
 
 <div class="row">
-  <%= f.button :submit, 'Save', :class => 'btn-primary btn btn-lg col-md-2 col-md-offset-5' %>
+  <%= f.button :submit, 'Save', :class => 'btn-primary btn btn-lg col-md-2 col-md-offset-5',
+                                data: {
+                                toggle: 'tooltip',
+                                placement: 'right',
+                                confirm: "Please note that by submitting this application, you waive your rights to inspect the contents of any letters or statements of recommendation submitted in support of your application."
+                                }%>
   <% if @return_to %>
     <%= link_to 'Back', @return_to, class: 'btn-default btn btn-lg col-md-2 col-md-offset-2' %>
   <% end %>

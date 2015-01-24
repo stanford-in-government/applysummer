@@ -205,7 +205,7 @@ window.initRanker = (options) ->
     saveChoices $(this)
 
   $('[data-action=submit]').click ->
-    if confirm("Are you sure you want to submit your preferences? You will not be able to edit them anymore after submission!")
+    if confirm("Are you sure you want to submit your preferences? You will not be able to edit them anymore after submission!\n\nPlease note that by submitting this application, you waive your rights to inspect the contents of any letters or statements of recommendation submitted in support of your application.")
       saveChoices $(this), ->
         window.location = options.return_url
 
