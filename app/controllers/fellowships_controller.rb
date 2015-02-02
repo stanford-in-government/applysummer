@@ -2,6 +2,7 @@ class FellowshipsController < ApplicationController
   before_action :authenticate_user!, only: [ :rank, :save_choices ]
   before_action :get_application, only: [ :rank, :save_choices ]
   before_action :get_fellowships, only: [ :index, :rank ]
+  before_action :check_fellowship_deadline, only: [ :rank, :save_choices ]
 
   def index
   end
@@ -29,6 +30,10 @@ class FellowshipsController < ApplicationController
   end
 
   private
+    def check_fellowship_deadline
+      check_deadline(:fellowship, :application)
+    end
+
     def get_application
       @application = Application.get_or_create_current_application(current_user, :fellowship)
     end

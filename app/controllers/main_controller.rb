@@ -22,6 +22,8 @@ class MainController < ApplicationController
   end
 
   def apply_to
+    return if check_category_deadline(@category)
+
     # General
     @profile_exists = current_user.has_profile?
     @personal_statement_exists = @application.has_personal_statement?
@@ -50,6 +52,8 @@ class MainController < ApplicationController
   end
 
   def statement
+    return if check_category_deadline(@category)
+
     if params.has_key?(:application) &&  @application.update(application_params)
       redirect_to apply_to_path(@category), notice: "Responses successfully saved."
       return
@@ -112,6 +116,15 @@ class MainController < ApplicationController
   end
 
   private
+
+    def check_category_deadline(category)
+      category = category.to_sym
+      if category == :fellowship
+        check_deadline(:fellowship, :application)
+      elsif category == :stipend
+        check_deadline(:stipend, :second)
+      end
+    end
 
     def get_application
       @category = params[:category]

@@ -6,6 +6,8 @@ class StipendsController < ApplicationController
   end
 
   def questions
+    check_deadline(:stipend, :second)
+
     @internship = @application.internship
     if @internship.nil?
       @internship = Internship.new

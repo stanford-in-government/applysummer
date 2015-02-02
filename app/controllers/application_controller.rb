@@ -30,4 +30,13 @@ class ApplicationController < ActionController::Base
       end
       @return_to = session[:return_to]
     end
+
+    def check_deadline(category, type)
+      if Fellowship::Application.config.fellowship.deadlines[category][type] < DateTime.now
+        redirect_to root_path, flash: { error: "Deadline is over." }
+        true
+      else
+        false
+      end
+    end
 end
