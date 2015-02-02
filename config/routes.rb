@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get 'admin/debug' => 'admin#debug'
   get 'admin/stats' => 'admin#stats'
   get 'admin/fellowships(/:id)' => 'admin#fellowships', as: :fellowships_admin
+  get 'admin/emails/:category' => 'admin#list_emails', as: :list_emails
 
   get 'fellowships' => 'fellowships#index'
   match 'fellowships/rank' => 'fellowships#rank', as: :fellowships_rank, via: [ :get, :post ]

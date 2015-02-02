@@ -11,6 +11,18 @@ class AdminController < ApplicationController
     @app = Application.where(category: Application.categories[:fellowship])
   end
 
+  def list_emails
+    category = params[:category]
+    applications = Application.accessible_by(current_ability, :read)
+      .includes(:user)
+      .where.not(status: Application.statuses[:archived])
+      .where(category: Application.categories[category])
+      .all
+
+    emails = applications.map {|app| app.user.email}
+    render text: emails.join(', ')
+  end
+
   def fellowships
     id = params[:id]
 
