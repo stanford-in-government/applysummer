@@ -64,9 +64,10 @@ class Application < ActiveRecord::Base
       new_choices.each do |c|
         choice = Choice.new(c)
         choice.application = self
-        choice.save
+        return false unless choice.save
       end
     end
+    true
   end
 
   def choices_filled?

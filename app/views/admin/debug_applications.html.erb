@@ -1,21 +1,16 @@
 <pre>
 <% @app.each do |app|
   print = false
-  r = []
-  o = []
   app.choices.each do |choice|
-    if r.include? choice.rank or o.include? choice.organization_id
-      # choice.delete
+    if choice.statement.blank? && choice.rank < 3
       print = true
     end
-    r.push choice.rank
-    o.push choice.organization_id
   end
   if print %>
     <%= app.user.name %>
     <%= app.id %>
     <% app.choices.order('rank').each do |choice| %>
-      <%= choice.id %>  <%= choice.rank %>  <%= choice.organization.name %>  <%= choice.created_at %>
+      <%= choice.id %>  <%= choice.rank %>  <%= choice.organization.name %>  <%= choice.statement %>
       <% end %>
     <% end %>
   <% end %>

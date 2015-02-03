@@ -5,6 +5,14 @@ class AdminController < ApplicationController
   def index
   end
 
+  def debug_applications
+    render status: :forbidden unless current_user.admin?
+    @app = Application.where(status: Application.statuses[:completed])
+      .where(category: Application.categories[:fellowship])
+      .includes(:choices)
+      .all
+  end
+
   # For debugging duplicated choices bug
   def debug
     render status: :forbidden unless current_user.admin?

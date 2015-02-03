@@ -16,7 +16,11 @@ class FellowshipsController < ApplicationController
   def save_choices
     return render text: 'Your choices have already been submitted.', status: :bad_request if @application.completed? || @application.archived?
 
-    @application.update_choices_from_frontend(JSON.parse(params[:json]))
+    success = @application.update_choices_from_frontend(JSON.parse(params[:json]))
+
+    if not success
+      return render text: 'There was a problem saving your preferences. Try reloading.', status: :bad_request
+    end
 
     if params[:type] == 'submit'
       unless @application.choices_filled?

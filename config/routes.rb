@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
   get 'admin' => 'admin#index'
   get 'admin/debug' => 'admin#debug'
+  get 'admin/debug/applications' => 'admin#debug_applications'
   get 'admin/stats' => 'admin#stats'
   get 'admin/fellowships(/:id)' => 'admin#fellowships', as: :fellowships_admin
   get 'admin/emails/:category' => 'admin#list_emails', as: :list_emails
