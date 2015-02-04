@@ -5,6 +5,12 @@ class AdminController < ApplicationController
   def index
   end
 
+  def become
+    render status: :forbidden unless current_user.admin?
+    sign_in(:user, User.find(params[:user_id]), bypass: true)
+    redirect_to root_url
+  end
+
   def debug_applications
     render status: :forbidden unless current_user.admin?
     @app = Application.where(status: Application.statuses[:completed])

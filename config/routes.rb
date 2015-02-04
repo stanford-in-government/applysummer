@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   root 'main#index'
 
   get 'admin' => 'admin#index'
+  get 'admin/become/:user_id' => 'admin#become'
   get 'admin/debug' => 'admin#debug'
   get 'admin/debug/applications' => 'admin#debug_applications'
   get 'admin/stats' => 'admin#stats'
