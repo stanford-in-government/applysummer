@@ -15,6 +15,7 @@ class ApplicationsController < ApplicationController
     @profile = @user.profile
     @internship = @application.internship
     @num_applied = Fellowship::Application.config.fellowship.num_applied
+    @choices = @application.choices.order(rank: :asc).all
 
     respond_with(@application) do |format|
       format.pdf do

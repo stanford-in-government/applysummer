@@ -77,14 +77,14 @@
       <div class="panel panel-default">
         <div class="panel-heading"><h2 class="panel-title">Fellowship Preferences</h2></div>
 
-          <% unless @application.choices.exists? %>
+          <% unless @choices.exists? %>
             <div class="panel-body">
               <p>Missing preferences</p>
             </div>
           <% end %>
 
           <table class="table">
-            <% @application.choices.all.each_with_index do |choice, i| %>
+            <% @choices.all.each_with_index do |choice, i| %>
               <tr><td><%= i + 1 %></td><td><%= choice.fellowship.name %></td></tr>
             <% end %>
           </table>
@@ -209,7 +209,7 @@
 <!-- Fellowship -->
 <div class="row">
   <div class="col-xs-12">
-    <% @application.choices.all.each_with_index do |choice, i|
+    <% @choices.each_with_index do |choice, i|
       if i < @num_applied %>
       <div class="panel panel-default">
         <div class="panel-heading">
