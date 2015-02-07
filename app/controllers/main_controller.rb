@@ -22,8 +22,6 @@ class MainController < ApplicationController
   end
 
   def apply_to
-    return if check_category_deadline(@category)
-
     # General
     @profile_exists = current_user.has_profile?
     @personal_statement_exists = @application.has_personal_statement?
