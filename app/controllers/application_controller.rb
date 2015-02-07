@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
     end
 
     def check_deadline(category, type)
-      if Fellowship::Application.config.fellowship.deadlines[category][type] < DateTime.now
+      if Fellowship::Application.config.fellowship.deadlines[category][type] < Time.zone.now
         redirect_to root_path, flash: { error: "Deadline is over." }
         true
       else
