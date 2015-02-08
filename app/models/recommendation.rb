@@ -7,7 +7,7 @@ class Recommendation < ActiveRecord::Base
 
   has_attached_file :letter
   validates_attachment_content_type :letter, content_type: ['application/pdf']
-  validates_attachment_size :letter, less_than: 1.megabyte
+  validates_attachment_size :letter, less_than: 3.megabyte
 
   private
 

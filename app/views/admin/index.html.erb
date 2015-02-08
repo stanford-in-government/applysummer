@@ -1,0 +1,15 @@
+<% title 'Admin' %>
+
+<div class="page-header">
+  <h1>Admin Links</h1>
+</div>
+
+<h2>Fellowships</h2>
+<%= link_to 'Fellowships', fellowships_admin_path, class: 'btn btn-default' %>
+<%= link_to "Emails", list_emails_path(:fellowship), class: 'btn btn-default' %>
+<%= link_to "Export", export_applicants_path(:fellowship, format: :xls), class: 'btn btn-default' %>
+
+<h2>Stipends</h2>
+<%= link_to 'Stipends', stipends_admin_path, class: 'btn btn-default' %>
+<%= link_to "Emails", list_emails_path(:stipend), class: 'btn btn-default' %>
+<%= link_to "Export", export_applicants_path(:stipend, format: :xls), class: 'btn btn-default' %>

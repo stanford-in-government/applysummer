@@ -88,5 +88,16 @@ class Application < ActiveRecord::Base
         application.status = Application.statuses[:incomplete]
       end
     end
+
+    def to_csv(options = {})
+      CSV.generate(options) do |csv|
+        csv << ['First Name', 'Last Name', 'SUID', 'Email', 'Class', 'Majors']
+        all.each do |app|
+          user = app.user
+          profile = user.profile
+          csv << [profile.first_name, profile.last_name, profile.suid, user.email, profile.class_year, profile.majors]
+        end
+      end
+    end
   end
 end

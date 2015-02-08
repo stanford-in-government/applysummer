@@ -3,6 +3,7 @@ class AdminController < ApplicationController
   before_action :get_fellowships, only: [:fellowships, :stats]
 
   def index
+    render status: :forbidden unless current_user.admin?
   end
 
   def become
@@ -37,6 +38,20 @@ class AdminController < ApplicationController
     render text: emails.join(', ')
   end
 
+  def export_applicants
+    category = params[:category]
+    @applications = Application.accessible_by(current_ability, :read)
+      .includes(user: [:profile])
+      .where(status: Application.statuses[:completed])
+      .where(category: Application.categories[category])
+      .all
+
+    respond_to do |format|
+      format.csv { render text: @applications.to_csv }
+      format.xls { render text: @applications.to_csv(col_sep: "\t") }
+    end
+  end
+
   def fellowships
     id = params[:id]
 
@@ -54,6 +69,13 @@ class AdminController < ApplicationController
     @emails = @choices.map do |choice|
       choice.application.user.email
     end
+  end
+
+  def stipends
+    @applications = Application.accessible_by(current_ability, :read)
+      .where(category: Application.categories[:stipend])
+      .includes(user: [:documents, :profile])
+      .all
   end
 
   def stats
