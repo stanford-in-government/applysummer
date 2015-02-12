@@ -3,7 +3,7 @@ class AdminController < ApplicationController
   before_action :get_fellowships, only: [:fellowships, :stats]
 
   def index
-    render status: :forbidden unless current_user.admin?
+    render status: :forbidden unless current_user.can_read?
   end
 
   def become

@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'main#index'
 
-  get 'admin' => 'admin#index'
+  get 'admin' => 'admin#index', as: :admin_home
   get 'admin/become/:user_id' => 'admin#become'
   get 'admin/debug' => 'admin#debug'
   get 'admin/debug/applications' => 'admin#debug_applications'

@@ -18,6 +18,9 @@
 <div class="pull-right">
 <% if user_signed_in? %>
   <div class="btn-group">
+    <% if current_user.can_read? %>
+      <%= link_to "Review", admin_home_path, class: "btn btn-danger" %>
+    <% end %>
     <%= link_to "Apply", apply_path, class: "btn btn-primary" %>
     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
       <span class="caret"></span>

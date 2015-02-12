@@ -27,6 +27,10 @@ class User < ActiveRecord::Base
     has_profile? ? profile.sunetid : ''
   end
 
+  def can_read?
+    reader? || moderator? || admin?
+  end
+
   def has_profile?
     !profile.nil?
   end
