@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   get 'admin/stats' => 'admin#stats'
   get 'admin/fellowships(/:id)' => 'admin#fellowships', as: :fellowships_admin
   get 'admin/stipends' => 'admin#stipends', as: :stipends_admin
-  get 'admin/emails/:category' => 'admin#list_emails', as: :list_emails
+  get 'admin/emails/:category(/:status)' => 'admin#list_emails', as: :list_emails
   get 'admin/export/:category' => 'admin#export_applicants', as: :export_applicants
 
   get 'fellowships' => 'fellowships#index'

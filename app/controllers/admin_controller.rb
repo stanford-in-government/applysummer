@@ -32,10 +32,13 @@ class AdminController < ApplicationController
       .includes(:user)
       .where.not(status: Application.statuses[:archived])
       .where(category: Application.categories[category])
-      .all
 
-    emails = applications.map {|app| app.user.email}
-    render text: emails.join(', ')
+    if status = params[:status]
+      applications = applications.where(status: Application.statuses[status])
+    end
+
+    emails = applications.all.map {|app| app.user.email}
+    render plain: emails.join(', ')
   end
 
   def export_applicants
