@@ -22,7 +22,8 @@ class Internship < ActiveRecord::Base
   SHORT_ANSWER_QUESTIONS = {
     work_scope: 'Describe the specific work scope and tasks in your 9-week internship. What is the role of the office in policymaking? How will your internship relate to public policy (government functions related to policy-making, research related to public policy or government, implementation or development of policy)? (200 words max)',
     # relevance: 'Describe how your internship is, by nature, in public policy, as defined above (government functions related to policy-making, research related to public policy or government, implementation or development of policy). (100 words max)',
-    reason: 'What financial considerations would you like us to know about? What are your plans in case you do not receive a stipend? (100 words max)'
+    reason: 'What financial considerations would you like us to know about? What are your plans in case you do not receive a stipend? (100 words max)',
+    budget: 'Please estimate your budget (i.e. housing, transporation, food, etc.)'
   }
 
   CATEGORIES = [
