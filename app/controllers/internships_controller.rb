@@ -44,6 +44,6 @@ class InternshipsController < ApplicationController
     end
 
     def internship_params
-      params.require(:internship).permit(:application_id, :name, :city, :country, :supervisor_name, :supervisor_title, :supervisor_email, :supervisor_phone, :faculty_name, :at_home, :financial_aid, :unpaid, :minimum_length, :fulltime, :travel_warning, :political, :social_service, :category, :related_to, :work_scope, :relevance, :reason)
+      params.require(:internship).permit(:application_id, :name, :city, :country, :supervisor_name, :supervisor_title, :supervisor_email, :supervisor_phone, :faculty_name, :at_home, :financial_aid, :unpaid, :minimum_length, :fulltime, :travel_warning, :political, :social_service, :category, :related_to, :work_scope, :relevance, :reason, :budget)
     end
 end
