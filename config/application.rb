@@ -36,7 +36,7 @@ module Fellowship
     config.fellowship.deadlines = {
       stipend: {
         first: DateTime.parse('Feburary 14, 2015 at 11:59pm -8:00'),
-        second: DateTime.parse('April 6, 2015 at 11:59pm -8:00'),
+        second: DateTime.parse('April 9, 2015 at 11:59pm -8:00'),
       },
       fellowship: {
         application: DateTime.parse('Feburary 6, 2015 at 11:59pm -8:00'),
